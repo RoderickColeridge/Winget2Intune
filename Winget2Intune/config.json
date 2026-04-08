@@ -1,26 +1,91 @@
 {
-  "Credentials": {
-    "ClientID": "",
-    "AppID": "",
-    "TenantID": "",
-    "ClientSecret": ""
-  },
   "Apps": [
-    {
-      "WingetId": "Adobe.Acrobat.Reader.64-bit",
-      "Description": "Adobe Acrobat Reader (64-bit)",
-      "InstallCommand": "%windir%\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe -Executionpolicy Bypass -file .\\Adobe_Acrobat_Reader_(64-bit).ps1 -mode install -log \"Adobe.Acrobat.Reader.64-bit.log\"",
-      "UninstallCommand": "%windir%\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe -Executionpolicy Bypass -file .\\Adobe_Acrobat_Reader_(64-bit)_uninstall.ps1",
-      "Publisher": "Adobe",
-      "DisplayName": "Adobe Acrobat Reader (64-bit)"
-    },
     {
       "WingetId": "7zip.7zip",
       "Description": "7-Zip",
       "InstallCommand": "%windir%\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe -Executionpolicy Bypass -file .\\7-Zip.ps1 -mode install -log \"7zip.7zip.log\"",
       "UninstallCommand": "%windir%\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe -Executionpolicy Bypass -file .\\7-Zip_uninstall.ps1",
       "Publisher": "7-Zip",
-      "DisplayName": "7-Zip"
+      "DisplayName": "7-Zip",
+      "PackageId": "7zip.7zip",
+      "Type": "Winget"
+    },
+    {
+      "Description": "Zoom's secure, reliable video platform powers all of your communication needs, including meetings, chat, phone, webinars, and online events.",
+      "DisplayName": "Zoom Workplace",
+      "WingetId": "Zoom.Zoom",
+      "UninstallCommand": "%windir%\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe -Executionpolicy Bypass -file .\\Zoom_Workplace_uninstall.ps1",
+      "InstallCommand": "%windir%\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe -Executionpolicy Bypass -file .\\Zoom_Workplace.ps1 -mode install -log \"Zoom.Zoom.log\"",
+      "Publisher": "Zoom",
+      "PackageId": "Zoom.Zoom",
+      "Type": "Winget"
+    },
+    {
+      "InstallCommand": "%windir%\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe -Executionpolicy Bypass -file .\\Adobe_Acrobat_Reader_(64-bit).ps1 -mode install -log \"Adobe.Acrobat.Reader.64-bit.log\"",
+      "DisplayName": "Adobe Acrobat Reader (64-bit)",
+      "Description": "Adobe Acrobat Reader software is the free, trusted global standard for viewing, printing, signing, sharing, and annotating PDFs. It's the only PDF viewer that can open and interact with all types of PDF content ΓÇô including forms and multimedia.",
+      "UninstallCommand": "%windir%\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe -Executionpolicy Bypass -file .\\Adobe_Acrobat_Reader_(64-bit)_uninstall.ps1",
+      "Publisher": "Adobe",
+      "WingetId": "Adobe.Acrobat.Reader.64-bit",
+      "PackageId": "Adobe.Acrobat.Reader.64-bit",
+      "Type": "Winget"
+    },
+    {
+      "DisplayName": "TeamViewer",
+      "UninstallCommand": "%windir%\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe -Executionpolicy Bypass -file .\\TeamViewer_uninstall.ps1",
+      "Description": "TeamViewer is a comprehensive, remote access, remote control and remote support solution that works with almost every desktop and mobile platform, including Windows, macOS, Android, and iOS. TeamViewer lets you remote in to computers or mobile devices located anywhere in the world and use them as though you were there.",
+      "WingetId": "TeamViewer.TeamViewer",
+      "InstallCommand": "%windir%\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe -Executionpolicy Bypass -file .\\TeamViewer.ps1 -mode install -log \"TeamViewer.TeamViewer.log\"",
+      "Publisher": "TeamViewer",
+      "PackageId": "TeamViewer.TeamViewer",
+      "Type": "Winget"
+    },
+    {
+      "DisplayName": "TeamViewer Host",
+      "UninstallCommand": "%windir%\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe -Executionpolicy Bypass -file .\\TeamViewer_Host_uninstall.ps1",
+      "Description": "TeamViewer Host is used for 24/7 access to remote computers, which makes it an ideal solution for uses such as remote device monitoring, server maintenance, or connection to a PC, Mac, or Linux device in the office or at home without having to accept the incoming connection on the remote device (unattended access). Install TeamViewer Host on your devices to access them effortlessly.",
+      "WingetId": "TeamViewer.TeamViewer.Host",
+      "InstallCommand": "%windir%\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe -Executionpolicy Bypass -file .\\TeamViewer_Host.ps1 -mode install -log \"TeamViewer.TeamViewer.Host.log\"",
+      "Publisher": "TeamViewer",
+      "PackageId": "TeamViewer.TeamViewer.Host",
+      "Type": "Winget"
+    },
+    {
+      "PackageId": "adobereader",
+      "Publisher": "Adobe",
+      "Version": "2025.1.21288",
+      "IconUrl": "https://cdn.jsdelivr.net/gh/pauby/ChocoPackages@fb3fc3a/icons/adobereader.png",
+      "DisplayName": "Adobe Acrobat Reader DC",
+      "InstallCommand": "%windir%\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe -Executionpolicy Bypass -file .\\Adobe_Acrobat_Reader_DC.ps1",
+      "Type": "Chocolatey",
+      "UninstallCommand": "%windir%\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe -Executionpolicy Bypass -file .\\Adobe_Acrobat_Reader_DC_uninstall.ps1",
+      "Description": "View, print, sign, and annotate PDF files."
+    },
+    {
+      "DisplayName": "Google Chrome",
+      "UninstallCommand": "%windir%\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe -Executionpolicy Bypass -file .\\Google_Chrome_uninstall.ps1",
+      "InstallCommand": "%windir%\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe -Executionpolicy Bypass -file .\\Google_Chrome.ps1 -mode install -log \"Google.Chrome.log\"",
+      "Description": "Chrome is the official web browser from Google, built to be fast, secure, and customizable.",
+      "Publisher": "Google LLC",
+      "Type": "Winget",
+      "PackageId": "Google.Chrome"
+    },
+    {
+      "PackageId": "GoogleChrome",
+      "Publisher": "Google LLC.",
+      "Version": "147.0.7727.50",
+      "IconUrl": "https://cdn.jsdelivr.net/gh/chocolatey-community/chocolatey-packages@edba4a5849ff756e767cba86641bea97ff5721fe/icons/chrome.svg",
+      "DisplayName": "Google Chrome",
+      "InstallCommand": "%windir%\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe -Executionpolicy Bypass -file .\\Google_Chrome.ps1",
+      "Type": "Chocolatey",
+      "UninstallCommand": "%windir%\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe -Executionpolicy Bypass -file .\\Google_Chrome_uninstall.ps1",
+      "Description": "Chrome is a fast, simple, and secure web browser, built for the modern web.\n\n### Notes\n\n- This package uses Chrome's administrative MSI installer and installs the 32-bit on 32-bit OSes and the 64-bit version on 64-bit OSes. If this package is installed on a 64-bit OS and the 32-bit version of Chrome is already installed, the package keeps installing/updating the 32-bit version of Chrome.\n- This package always installs the latest version of Google Chrome, regardless of the version specified in the package. Google does not officially offer older versions of Chrome for download. Because of this you may get checksum mismatch between the time Google releases a new installer, and the package is automatically updated.\n- **If the package is out of date please check [Version History](#versionhistory) for the latest submitted version. If you have a question, please ask it in [Chocolatey Community Package Discussions](https://github.com/chocolatey-community/chocolatey-packages/discussions) or raise an issue on the [Chocolatey Community Packages Repository](https://github.com/chocolatey-community/chocolatey-packages/issues) if you have problems with the package. Disqus comments will generally not be responded to.**"
     }
-  ]
+  ],
+  "Credentials": {
+    "ClientID": "",
+    "TenantID": "",
+    "ClientSecret": "",
+    "AppId": ""
+  }
 }

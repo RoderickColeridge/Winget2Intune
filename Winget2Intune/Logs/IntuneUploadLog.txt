@@ -1,63 +1,420 @@
-2025-04-26 10:08:52 [INFO] - Starting initialization of required modules...
-2025-04-26 10:08:53 [INFO] - Processing module: Microsoft.Graph.Applications
-2025-04-26 10:08:53 [INFO] - Module Microsoft.Graph.Applications is already loaded (Version: 2.26.1)
-2025-04-26 10:08:53 [INFO] - Processing module: Microsoft.Graph.Identity.DirectoryManagement
-2025-04-26 10:08:53 [INFO] - Module Microsoft.Graph.Identity.DirectoryManagement is already loaded (Version: 2.26.1)
-2025-04-26 10:08:53 [INFO] - Processing module: IntuneWin32App
-2025-04-26 10:08:53 [INFO] - Module IntuneWin32App is already loaded (Version: 1.4.4)
-2025-04-26 10:08:53 [INFO] - Processing module: Microsoft.WinGet.Client
-2025-04-26 10:08:53 [INFO] - Module Microsoft.WinGet.Client is already loaded (Version: 1.9.25190)
-2025-04-26 10:08:53 [INFO] - All required modules initialized successfully
-2025-04-26 10:08:53 [INFO] - Loaded apps from config file successfully.
-2025-04-26 10:09:01 [INFO] - Starting Azure AD app removal process...
-2025-04-26 10:09:01 [INFO] - No App ID found in config, skipping app removal
-2025-04-26 10:09:01 [INFO] - Starting credential removal process...
-2025-04-26 10:09:01 [INFO] - Current credentials exist: False
-2025-04-26 10:09:01 [INFO] - Clearing credentials from memory...
-2025-04-26 10:09:01 [INFO] - Credentials cleared from memory
-2025-04-26 10:09:01 [INFO] - Saving updated config to: C:\Users\r.coleridge\OneDrive - Xantion ICT\Documenten\GitHub\GithubScripts\Intune app uploader\config.json
-2025-04-26 10:09:02 [INFO] - Config file updated successfully
-2025-04-26 10:09:02 [INFO] - Credential removal completed successfully
-2025-04-26 10:09:02 [INFO] - Starting Graph credential removal process...
-2025-04-26 10:09:09 [INFO] - Starting initialization of required modules...
-2025-04-26 10:09:09 [INFO] - Processing module: Microsoft.Graph.Applications
-2025-04-26 10:09:09 [INFO] - Module Microsoft.Graph.Applications is already loaded (Version: 2.26.1)
-2025-04-26 10:09:09 [INFO] - Processing module: Microsoft.Graph.Identity.DirectoryManagement
-2025-04-26 10:09:09 [INFO] - Module Microsoft.Graph.Identity.DirectoryManagement is already loaded (Version: 2.26.1)
-2025-04-26 10:09:09 [INFO] - Processing module: IntuneWin32App
-2025-04-26 10:09:09 [INFO] - Module IntuneWin32App is already loaded (Version: 1.4.4)
-2025-04-26 10:09:09 [INFO] - Processing module: Microsoft.WinGet.Client
-2025-04-26 10:09:09 [INFO] - Module Microsoft.WinGet.Client is already loaded (Version: 1.9.25190)
-2025-04-26 10:09:09 [INFO] - All required modules initialized successfully
-2025-04-26 10:09:09 [INFO] - Loaded apps from config file successfully.
-2025-04-26 10:09:35 [INFO] - Starting Azure AD app removal process...
-2025-04-26 10:09:35 [INFO] - No App ID found in config, skipping app removal
-2025-04-26 10:09:35 [INFO] - Starting credential removal process...
-2025-04-26 10:09:35 [INFO] - Current credentials exist: False
-2025-04-26 10:09:35 [INFO] - Clearing credentials from memory...
-2025-04-26 10:09:35 [INFO] - Credentials cleared from memory
-2025-04-26 10:09:35 [INFO] - Saving updated config to: C:\Users\r.coleridge\OneDrive - Xantion ICT\Documenten\GitHub\GithubScripts\Intune app uploader\config.json
-2025-04-26 10:09:35 [INFO] - Config file updated successfully
-2025-04-26 10:09:35 [INFO] - Credential removal completed successfully
-2025-04-26 10:09:35 [INFO] - Starting Graph credential removal process...
-2025-04-26 10:10:26 [INFO] - Starting initialization of required modules...
-2025-04-26 10:10:26 [INFO] - Processing module: Microsoft.Graph.Applications
-2025-04-26 10:10:26 [INFO] - Module Microsoft.Graph.Applications is already loaded (Version: 2.26.1)
-2025-04-26 10:10:26 [INFO] - Processing module: Microsoft.Graph.Identity.DirectoryManagement
-2025-04-26 10:10:26 [INFO] - Module Microsoft.Graph.Identity.DirectoryManagement is already loaded (Version: 2.26.1)
-2025-04-26 10:10:26 [INFO] - Processing module: IntuneWin32App
-2025-04-26 10:10:26 [INFO] - Module IntuneWin32App is already loaded (Version: 1.4.4)
-2025-04-26 10:10:26 [INFO] - Processing module: Microsoft.WinGet.Client
-2025-04-26 10:10:26 [INFO] - Module Microsoft.WinGet.Client is already loaded (Version: 1.9.25190)
-2025-04-26 10:10:26 [INFO] - All required modules initialized successfully
-2025-04-26 10:10:26 [INFO] - Loaded apps from config file successfully.
-2025-04-26 10:10:34 [INFO] - Starting Azure AD app removal process...
-2025-04-26 10:10:34 [INFO] - No App ID found in config, skipping app removal
-2025-04-26 10:10:34 [INFO] - Starting credential removal process...
-2025-04-26 10:10:34 [INFO] - Current credentials exist: False
-2025-04-26 10:10:34 [INFO] - Clearing credentials from memory...
-2025-04-26 10:10:34 [INFO] - Credentials cleared from memory
-2025-04-26 10:10:34 [INFO] - Saving updated config to: C:\Users\r.coleridge\OneDrive - Xantion ICT\Documenten\GitHub\GithubScripts\Intune app uploader\config.json
-2025-04-26 10:10:34 [INFO] - Config file updated successfully
-2025-04-26 10:10:34 [INFO] - Credential removal completed successfully
-2025-04-26 10:10:34 [INFO] - Starting Graph credential removal process...
+2026-04-03 13:36:49 [INFO] - Starting initialization of required modules...
+2026-04-03 13:36:49 [INFO] - Processing module: Microsoft.Graph.Applications
+2026-04-03 13:36:49 [INFO] - Module Microsoft.Graph.Applications is already loaded (Version: 2.34.0)
+2026-04-03 13:36:49 [INFO] - Processing module: Microsoft.Graph.Identity.DirectoryManagement
+2026-04-03 13:36:49 [INFO] - Module Microsoft.Graph.Identity.DirectoryManagement is already loaded (Version: 2.34.0)
+2026-04-03 13:36:49 [INFO] - Processing module: IntuneWin32App
+2026-04-03 13:36:49 [INFO] - Module IntuneWin32App is already loaded (Version: 1.4.4)
+2026-04-03 13:36:49 [INFO] - Processing module: Microsoft.WinGet.Client
+2026-04-03 13:36:49 [INFO] - Module Microsoft.WinGet.Client is already loaded (Version: 1.11.460)
+2026-04-03 13:36:50 [INFO] - All required modules initialized successfully
+2026-04-03 13:36:50 [INFO] - Checking current winget version...
+2026-04-03 13:36:50 [INFO] - Latest winget version available: 1.28.190
+2026-04-03 13:36:50 [INFO] - winget is up to date (version 1.28.220).
+2026-04-03 13:36:50 [INFO] - Loaded apps from config file successfully.
+2026-04-03 13:37:22 [INFO] - Initializing Graph connection...
+2026-04-03 13:37:22 [INFO] - No credentials found in config. Please register the application first.
+2026-04-03 13:37:22 [ERROR] - Critical error in main script execution
+Error Details: Failed to establish Graph connection
+Stack Trace: at Run-MainScript, C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\Winget2Intune.ps1: line 1441
+at <ScriptBlock>, C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\Winget2Intune.ps1: line 2577
+at <ScriptBlock>, C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\Winget2Intune.ps1: line 2623
+at <ScriptBlock>, <No file>: line 1
+2026-04-03 13:37:25 [ERROR] - Error stopping transcript
+Error Details: An error occurred stopping transcription: The host is not currently transcribing.
+Stack Trace: at Run-MainScript, C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\Winget2Intune.ps1: line 2177
+at <ScriptBlock>, C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\Winget2Intune.ps1: line 2577
+at <ScriptBlock>, C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\Winget2Intune.ps1: line 2623
+at <ScriptBlock>, <No file>: line 1
+2026-04-03 13:37:31 [INFO] - Starting app registration process...
+2026-04-03 13:37:31 [INFO] - Connecting to Microsoft Graph...
+2026-04-03 13:38:09 [INFO] - Creating Azure AD Application: Winget-Intune-App-Deployment
+2026-04-03 13:38:12 [INFO] - Created Azure AD Application
+2026-04-03 13:38:12 [INFO] - Creating service principal...
+2026-04-03 13:38:13 [INFO] - Created service principal
+2026-04-03 13:38:13 [INFO] - Creating client secret...
+2026-04-03 13:38:13 [INFO] - Granting admin consent for application permissions...
+2026-04-03 13:38:14 [INFO] - Granted consent for DeviceManagementApps.ReadWrite.All
+2026-04-03 13:38:14 [INFO] - Granted consent for DeviceManagementConfiguration.ReadWrite.All
+2026-04-03 13:38:14 [INFO] - Granted consent for DeviceManagementManagedDevices.ReadWrite.All
+2026-04-03 13:38:14 [INFO] - Granted consent for Directory.Read.All
+2026-04-03 13:38:15 [INFO] - Granted consent for Group.ReadWrite.All
+2026-04-03 13:38:15 [INFO] - Granted consent for DeviceManagementRBAC.Read.All
+2026-04-03 13:38:15 [INFO] - Granted consent for DeviceManagementRBAC.ReadWrite.All
+2026-04-03 13:38:15 [INFO] - Granted consent for Application.ReadWrite.All
+2026-04-03 13:38:15 [INFO] - Saved credentials to config file
+2026-04-03 13:38:18 [INFO] - Initializing Graph connection...
+2026-04-03 13:38:18 [INFO] - Using existing Graph connection
+2026-04-03 13:38:19 [INFO] - Connected to Intune Graph API successfully
+2026-04-03 13:38:19 [INFO] - Started transcript logging to: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\Logs\MainScript_20260403_133819.txt
+2026-04-03 13:38:19 [INFO] - Loading existing configuration from: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\config.json
+2026-04-03 13:38:20 [INFO] - Configuration loaded successfully
+2026-04-03 13:38:25 [INFO] - Assignment selection cancelled by user.
+2026-04-03 13:38:25 [INFO] - Stopped transcript logging
+2026-04-03 13:41:19 [INFO] - Starting Azure AD app removal process...
+2026-04-03 13:41:19 [INFO] - Found App ID: d1a0aa97-5a8b-4d23-a2f0-0e90f01ef8f3
+2026-04-03 13:41:19 [INFO] - Connecting to Microsoft Graph...
+2026-04-03 13:41:19 [INFO] - Successfully connected to Microsoft Graph
+2026-04-03 13:41:19 [INFO] - Attempting to remove Azure AD application...
+2026-04-03 13:41:19 [INFO] - Successfully removed Azure AD application
+2026-04-03 13:41:19 [INFO] - Starting credential removal process...
+2026-04-03 13:41:19 [INFO] - Current credentials exist: True
+2026-04-03 13:41:19 [INFO] - Clearing credentials from memory...
+2026-04-03 13:41:19 [INFO] - Credentials cleared from memory
+2026-04-03 13:41:20 [INFO] - Saving updated config to: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\config.json
+2026-04-03 13:41:20 [INFO] - Config file updated successfully
+2026-04-03 13:41:20 [INFO] - Credential removal completed successfully
+2026-04-03 13:41:20 [INFO] - Starting Graph credential removal process...
+2026-04-03 13:41:57 [INFO] - Starting initialization of required modules...
+2026-04-03 13:41:57 [INFO] - Processing module: Microsoft.Graph.Applications
+2026-04-03 13:41:57 [INFO] - Module Microsoft.Graph.Applications is already loaded (Version: 2.34.0)
+2026-04-03 13:41:57 [INFO] - Processing module: Microsoft.Graph.Identity.DirectoryManagement
+2026-04-03 13:41:57 [INFO] - Module Microsoft.Graph.Identity.DirectoryManagement is already loaded (Version: 2.34.0)
+2026-04-03 13:41:57 [INFO] - Processing module: IntuneWin32App
+2026-04-03 13:41:57 [INFO] - Module IntuneWin32App is already loaded (Version: 1.4.4)
+2026-04-03 13:41:57 [INFO] - Processing module: Microsoft.WinGet.Client
+2026-04-03 13:41:57 [INFO] - Module Microsoft.WinGet.Client is already loaded (Version: 1.11.460)
+2026-04-03 13:41:57 [INFO] - All required modules initialized successfully
+2026-04-03 13:41:57 [INFO] - Checking current winget version...
+2026-04-03 13:41:58 [INFO] - Latest winget version available: 1.28.190
+2026-04-03 13:41:58 [INFO] - winget is up to date (version 1.28.220).
+2026-04-03 13:41:58 [INFO] - Loaded apps from config file successfully.
+2026-04-03 13:42:09 [INFO] - Starting Azure AD app removal process...
+2026-04-03 13:42:09 [INFO] - No App ID found in config, skipping app removal
+2026-04-03 13:42:09 [INFO] - Starting credential removal process...
+2026-04-03 13:42:09 [INFO] - Current credentials exist: False
+2026-04-03 13:42:09 [INFO] - Clearing credentials from memory...
+2026-04-03 13:42:09 [INFO] - Credentials cleared from memory
+2026-04-03 13:42:09 [INFO] - Saving updated config to: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\config.json
+2026-04-03 13:42:09 [INFO] - Config file updated successfully
+2026-04-03 13:42:09 [INFO] - Credential removal completed successfully
+2026-04-03 13:42:09 [INFO] - Starting Graph credential removal process...
+2026-04-03 13:46:55 [INFO] - Starting initialization of required modules...
+2026-04-03 13:46:55 [INFO] - Processing module: Microsoft.Graph.Applications
+2026-04-03 13:46:55 [INFO] - Module Microsoft.Graph.Applications is already loaded (Version: 2.34.0)
+2026-04-03 13:46:55 [INFO] - Processing module: Microsoft.Graph.Identity.DirectoryManagement
+2026-04-03 13:46:55 [INFO] - Module Microsoft.Graph.Identity.DirectoryManagement is already loaded (Version: 2.34.0)
+2026-04-03 13:46:55 [INFO] - Processing module: IntuneWin32App
+2026-04-03 13:46:55 [INFO] - Module IntuneWin32App is already loaded (Version: 1.4.4)
+2026-04-03 13:46:55 [INFO] - Processing module: Microsoft.WinGet.Client
+2026-04-03 13:46:55 [INFO] - Module Microsoft.WinGet.Client is already loaded (Version: 1.11.460)
+2026-04-03 13:46:55 [INFO] - All required modules initialized successfully
+2026-04-03 13:46:55 [INFO] - Checking current winget version...
+2026-04-03 13:46:55 [INFO] - Latest winget version available: 1.28.190
+2026-04-03 13:46:55 [INFO] - winget is up to date (version 1.28.220).
+2026-04-03 13:46:55 [INFO] - Loaded apps from config file successfully.
+2026-04-03 13:47:18 [INFO] - Loaded apps from config file successfully.
+2026-04-03 13:47:18 [INFO] - Added new app from Chocolatey: adobereader (adobereader)
+2026-04-03 13:47:25 [INFO] - Initializing Graph connection...
+2026-04-03 13:47:25 [INFO] - No credentials found in config. Please register the application first.
+2026-04-03 13:47:25 [ERROR] - Critical error in main script execution
+Error Details: Failed to establish Graph connection
+Stack Trace: at Run-MainScript, C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\Winget2Intune.ps1: line 1441
+at <ScriptBlock>, C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\Winget2Intune.ps1: line 2576
+at <ScriptBlock>, C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\Winget2Intune.ps1: line 2622
+at <ScriptBlock>, <No file>: line 1
+2026-04-03 13:47:29 [ERROR] - Error stopping transcript
+Error Details: An error occurred stopping transcription: The host is not currently transcribing.
+Stack Trace: at Run-MainScript, C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\Winget2Intune.ps1: line 2177
+at <ScriptBlock>, C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\Winget2Intune.ps1: line 2576
+at <ScriptBlock>, C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\Winget2Intune.ps1: line 2622
+at <ScriptBlock>, <No file>: line 1
+2026-04-03 13:47:31 [INFO] - Starting app registration process...
+2026-04-03 13:47:31 [INFO] - Connecting to Microsoft Graph...
+2026-04-03 13:48:25 [INFO] - Creating Azure AD Application: Winget-Intune-App-Deployment
+2026-04-03 13:48:26 [INFO] - Created Azure AD Application
+2026-04-03 13:48:26 [INFO] - Creating service principal...
+2026-04-03 13:48:27 [INFO] - Created service principal
+2026-04-03 13:48:27 [INFO] - Creating client secret...
+2026-04-03 13:48:27 [INFO] - Granting admin consent for application permissions...
+2026-04-03 13:48:27 [INFO] - Granted consent for DeviceManagementApps.ReadWrite.All
+2026-04-03 13:48:28 [INFO] - Granted consent for DeviceManagementConfiguration.ReadWrite.All
+2026-04-03 13:48:28 [INFO] - Granted consent for DeviceManagementManagedDevices.ReadWrite.All
+2026-04-03 13:48:28 [INFO] - Granted consent for Directory.Read.All
+2026-04-03 13:48:28 [INFO] - Granted consent for Group.ReadWrite.All
+2026-04-03 13:48:29 [INFO] - Granted consent for DeviceManagementRBAC.Read.All
+2026-04-03 13:48:29 [INFO] - Granted consent for DeviceManagementRBAC.ReadWrite.All
+2026-04-03 13:48:29 [INFO] - Granted consent for Application.ReadWrite.All
+2026-04-03 13:48:29 [INFO] - Saved credentials to config file
+2026-04-03 13:48:37 [INFO] - Initializing Graph connection...
+2026-04-03 13:48:37 [INFO] - Using existing Graph connection
+2026-04-03 13:48:39 [INFO] - Connected to Intune Graph API successfully
+2026-04-03 13:48:39 [INFO] - Started transcript logging to: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\Logs\MainScript_20260403_134839.txt
+2026-04-03 13:48:39 [INFO] - Loading existing configuration from: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\config.json
+2026-04-03 13:48:39 [INFO] - Configuration loaded successfully
+2026-04-03 13:48:42 [INFO] - User selected assignment: AllDevices=False, AllUsers=False, NoAssignment=True
+2026-04-03 13:48:42 [INFO] - Created C:\IntunePackages directory.
+2026-04-03 13:48:42 [INFO] - Downloaded IntuneWinAppUtil.exe successfully.
+2026-04-03 13:48:42 [INFO] - Starting process for adobereader
+2026-04-03 13:48:42 [INFO] - Created Chocolatey install/uninstall scripts for adobereader.
+2026-04-03 13:48:43 [INFO] - Packaged adobereader into C:\IntunePackages\adobereader.intunewin successfully.
+2026-04-03 13:48:43 [INFO] - Created Chocolatey detection script for adobereader.
+2026-04-03 13:48:44 [INFO] - Could not download icon from https://community.chocolatey.org/content/packageimages/adobereader.2025.1.20693.png
+2026-04-03 13:48:44 [INFO] - No icon file found for adobereader, proceeding without icon
+2026-04-03 13:48:44 [INFO] - Uploading adobereader to Intune...
+2026-04-03 13:49:08 [INFO] - Successfully uploaded adobereader to Intune
+2026-04-03 13:49:08 [INFO] - App ID: 36488507-c887-4c8a-b0fe-366692d1e19c
+2026-04-03 13:49:08 [INFO] - Display Name: adobereader
+2026-04-03 13:49:08 [INFO] - Description: View, print, sign, and annotate PDF files.
+2026-04-03 13:49:08 [INFO] - Publisher: Adobe
+2026-04-03 13:49:09 [INFO] - No assignment selected for adobereader
+2026-04-03 13:49:09 [INFO] - Starting cleanup operations...
+2026-04-03 13:49:09 [INFO] - Removed temporary file: C:\IntunePackages\adobereader_DetectionScript.ps1
+2026-04-03 13:49:09 [INFO] - Removed temporary file: C:\IntunePackages\adobereader_uninstall.ps1
+2026-04-03 13:49:09 [INFO] - Removed temporary file: C:\IntunePackages\adobereader.intunewin
+2026-04-03 13:49:09 [INFO] - Removed temporary file: C:\IntunePackages\adobereader.ps1
+2026-04-03 13:49:09 [INFO] - Removed temporary file: C:\IntunePackages\IntuneWinAppUtil.exe
+2026-04-03 13:49:09 [INFO] - Removed temporary directory: C:\IntunePackages
+2026-04-03 13:49:09 [INFO] - Script execution completed. Intune Graph session will close automatically.
+2026-04-03 13:49:19 [INFO] - Stopped transcript logging
+2026-04-03 14:02:28 [INFO] - Initializing Graph connection...
+2026-04-03 14:02:28 [INFO] - Using existing Graph connection
+2026-04-03 14:02:28 [INFO] - Connected to Intune Graph API successfully
+2026-04-03 14:02:28 [INFO] - Started transcript logging to: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\Logs\MainScript_20260403_140228.txt
+2026-04-03 14:02:28 [INFO] - Loading existing configuration from: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\config.json
+2026-04-03 14:02:28 [INFO] - Configuration loaded successfully
+2026-04-03 14:02:30 [INFO] - User selected assignment: AllDevices=False, AllUsers=False, NoAssignment=True
+2026-04-03 14:02:30 [INFO] - Created C:\IntunePackages directory.
+2026-04-03 14:02:31 [INFO] - Downloaded IntuneWinAppUtil.exe successfully.
+2026-04-03 14:02:31 [INFO] - Starting process for adobereader
+2026-04-03 14:02:31 [INFO] - Created Chocolatey install/uninstall scripts for adobereader.
+2026-04-03 14:02:32 [INFO] - Packaged adobereader into C:\IntunePackages\adobereader.intunewin successfully.
+2026-04-03 14:02:32 [INFO] - Created Chocolatey detection script for adobereader.
+2026-04-03 14:02:32 [INFO] - Could not download icon from https://community.chocolatey.org/content/packageimages/adobereader.2025.1.20693.png
+2026-04-03 14:02:32 [INFO] - No icon file found for adobereader, proceeding without icon
+2026-04-03 14:02:32 [INFO] - Uploading adobereader to Intune...
+2026-04-03 14:02:47 [INFO] - Successfully uploaded adobereader to Intune
+2026-04-03 14:02:47 [INFO] - App ID: fccd5f2a-d795-46af-aba8-8f4228934809
+2026-04-03 14:02:47 [INFO] - Display Name: adobereader
+2026-04-03 14:02:47 [INFO] - Description: View, print, sign, and annotate PDF files.
+2026-04-03 14:02:47 [INFO] - Publisher: Adobe
+2026-04-03 14:02:47 [INFO] - No assignment selected for adobereader
+2026-04-03 14:02:47 [INFO] - Starting cleanup operations...
+2026-04-03 14:02:47 [INFO] - Removed temporary file: C:\IntunePackages\adobereader_DetectionScript.ps1
+2026-04-03 14:02:47 [INFO] - Removed temporary file: C:\IntunePackages\adobereader_uninstall.ps1
+2026-04-03 14:02:47 [INFO] - Removed temporary file: C:\IntunePackages\adobereader.intunewin
+2026-04-03 14:02:47 [INFO] - Removed temporary file: C:\IntunePackages\adobereader.ps1
+2026-04-03 14:02:47 [INFO] - Removed temporary file: C:\IntunePackages\IntuneWinAppUtil.exe
+2026-04-03 14:02:47 [INFO] - Removed temporary directory: C:\IntunePackages
+2026-04-03 14:02:47 [INFO] - Script execution completed. Intune Graph session will close automatically.
+2026-04-03 14:02:52 [INFO] - Stopped transcript logging
+2026-04-03 15:30:13 [INFO] - Starting Azure AD app removal process...
+2026-04-03 15:30:13 [INFO] - Found App ID: 334a4d37-9138-4c34-90c5-e2db8db7dd0f
+2026-04-03 15:30:13 [INFO] - Connecting to Microsoft Graph...
+2026-04-03 15:30:17 [INFO] - Successfully connected to Microsoft Graph
+2026-04-03 15:30:17 [INFO] - Attempting to remove Azure AD application...
+2026-04-03 15:30:17 [INFO] - Successfully removed Azure AD application
+2026-04-03 15:30:17 [INFO] - Starting credential removal process...
+2026-04-03 15:30:17 [INFO] - Current credentials exist: True
+2026-04-03 15:30:17 [INFO] - Clearing credentials from memory...
+2026-04-03 15:30:17 [INFO] - Credentials cleared from memory
+2026-04-03 15:30:17 [INFO] - Saving updated config to: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\config.json
+2026-04-03 15:30:17 [INFO] - Config file updated successfully
+2026-04-03 15:30:17 [INFO] - Credential removal completed successfully
+2026-04-03 15:30:17 [INFO] - Starting Graph credential removal process...
+2026-04-03 15:30:23 [INFO] - Starting initialization of required modules...
+2026-04-03 15:30:23 [INFO] - Processing module: Microsoft.Graph.Applications
+2026-04-03 15:30:23 [INFO] - Module Microsoft.Graph.Applications is already loaded (Version: 2.34.0)
+2026-04-03 15:30:23 [INFO] - Processing module: Microsoft.Graph.Identity.DirectoryManagement
+2026-04-03 15:30:23 [INFO] - Module Microsoft.Graph.Identity.DirectoryManagement is already loaded (Version: 2.34.0)
+2026-04-03 15:30:23 [INFO] - Processing module: IntuneWin32App
+2026-04-03 15:30:23 [INFO] - Module IntuneWin32App is already loaded (Version: 1.4.4)
+2026-04-03 15:30:23 [INFO] - Processing module: Microsoft.WinGet.Client
+2026-04-03 15:30:23 [INFO] - Module Microsoft.WinGet.Client is already loaded (Version: 1.11.460)
+2026-04-03 15:30:23 [INFO] - All required modules initialized successfully
+2026-04-03 15:30:23 [INFO] - Checking current winget version...
+2026-04-03 15:30:23 [INFO] - Latest winget version available: 1.28.190
+2026-04-03 15:30:23 [INFO] - winget is up to date (version 1.28.220).
+2026-04-03 15:30:23 [INFO] - Loaded apps from config file successfully.
+2026-04-03 15:40:24 [INFO] - Starting Azure AD app removal process...
+2026-04-03 15:40:24 [INFO] - No App ID found in config, skipping app removal
+2026-04-03 15:40:24 [INFO] - Starting credential removal process...
+2026-04-03 15:40:24 [INFO] - Current credentials exist: False
+2026-04-03 15:40:24 [INFO] - Clearing credentials from memory...
+2026-04-03 15:40:24 [INFO] - Credentials cleared from memory
+2026-04-03 15:40:24 [INFO] - Saving updated config to: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\config.json
+2026-04-03 15:40:24 [INFO] - Config file updated successfully
+2026-04-03 15:40:24 [INFO] - Credential removal completed successfully
+2026-04-03 15:40:24 [INFO] - Starting Graph credential removal process...
+2026-04-03 15:40:27 [INFO] - Starting initialization of required modules...
+2026-04-03 15:40:27 [INFO] - Processing module: Microsoft.Graph.Applications
+2026-04-03 15:40:27 [INFO] - Module Microsoft.Graph.Applications is already loaded (Version: 2.34.0)
+2026-04-03 15:40:27 [INFO] - Processing module: Microsoft.Graph.Identity.DirectoryManagement
+2026-04-03 15:40:27 [INFO] - Module Microsoft.Graph.Identity.DirectoryManagement is already loaded (Version: 2.34.0)
+2026-04-03 15:40:27 [INFO] - Processing module: IntuneWin32App
+2026-04-03 15:40:27 [INFO] - Module IntuneWin32App is already loaded (Version: 1.4.4)
+2026-04-03 15:40:27 [INFO] - Processing module: Microsoft.WinGet.Client
+2026-04-03 15:40:27 [INFO] - Module Microsoft.WinGet.Client is already loaded (Version: 1.11.460)
+2026-04-03 15:40:28 [INFO] - All required modules initialized successfully
+2026-04-03 15:40:28 [INFO] - Checking current winget version...
+2026-04-03 15:40:28 [INFO] - Latest winget version available: 1.28.190
+2026-04-03 15:40:28 [INFO] - winget is up to date (version 1.28.220).
+2026-04-03 15:40:28 [INFO] - Loaded apps from config file successfully.
+2026-04-03 15:40:37 [INFO] - Loaded apps from config file successfully.
+2026-04-03 15:40:37 [INFO] - Added new app from Chocolatey: Adobe Acrobat Reader DC (adobereader)
+2026-04-03 15:40:46 [INFO] - Removed app: adobereader
+2026-04-03 15:40:46 [INFO] - Successfully removed 1 app(s)
+2026-04-03 15:43:11 [INFO] - Starting app registration process...
+2026-04-03 15:43:11 [INFO] - Connecting to Microsoft Graph...
+2026-04-03 15:44:10 [INFO] - Creating Azure AD Application: Winget-Intune-App-Deployment
+2026-04-03 15:44:11 [INFO] - Created Azure AD Application
+2026-04-03 15:44:11 [INFO] - Creating service principal...
+2026-04-03 15:44:11 [INFO] - Created service principal
+2026-04-03 15:44:11 [INFO] - Creating client secret...
+2026-04-03 15:44:12 [INFO] - Granting admin consent for application permissions...
+2026-04-03 15:44:12 [INFO] - Granted consent for DeviceManagementApps.ReadWrite.All
+2026-04-03 15:44:12 [INFO] - Granted consent for DeviceManagementConfiguration.ReadWrite.All
+2026-04-03 15:44:12 [INFO] - Granted consent for DeviceManagementManagedDevices.ReadWrite.All
+2026-04-03 15:44:13 [INFO] - Granted consent for Directory.Read.All
+2026-04-03 15:44:13 [INFO] - Granted consent for Group.ReadWrite.All
+2026-04-03 15:44:13 [INFO] - Granted consent for DeviceManagementRBAC.Read.All
+2026-04-03 15:44:13 [INFO] - Granted consent for DeviceManagementRBAC.ReadWrite.All
+2026-04-03 15:44:14 [INFO] - Granted consent for Application.ReadWrite.All
+2026-04-03 15:44:14 [INFO] - Saved credentials to config file
+2026-04-03 15:44:18 [INFO] - Initializing Graph connection...
+2026-04-03 15:44:18 [INFO] - Using existing Graph connection
+2026-04-03 15:44:19 [INFO] - Connected to Intune Graph API successfully
+2026-04-03 15:44:19 [INFO] - Started transcript logging to: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\Logs\MainScript_20260403_154419.txt
+2026-04-03 15:44:19 [INFO] - Loading existing configuration from: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\config.json
+2026-04-03 15:44:19 [INFO] - Configuration loaded successfully
+2026-04-03 15:44:28 [INFO] - User selected assignment: AllDevices=False, AllUsers=True, NoAssignment=False
+2026-04-03 15:44:28 [INFO] - Created C:\IntunePackages directory.
+2026-04-03 15:44:28 [INFO] - Downloaded IntuneWinAppUtil.exe successfully.
+2026-04-03 15:44:29 [INFO] - Starting process for Adobe Acrobat Reader DC
+2026-04-03 15:44:29 [INFO] - Created Chocolatey install/uninstall scripts for Adobe Acrobat Reader DC.
+2026-04-03 15:44:30 [INFO] - Packaged Adobe Acrobat Reader DC into C:\IntunePackages\Adobe_Acrobat_Reader_DC.intunewin successfully.
+2026-04-03 15:44:30 [INFO] - Created Chocolatey detection script for Adobe Acrobat Reader DC.
+2026-04-03 15:44:30 [INFO] - Downloaded icon from https://cdn.jsdelivr.net/gh/pauby/ChocoPackages@fb3fc3a/icons/adobereader.png
+2026-04-03 15:44:30 [INFO] - Found icon file for Adobe Acrobat Reader DC at: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\Icons\adobereader.png
+2026-04-03 15:44:30 [INFO] - Successfully converted icon to Base64
+2026-04-03 15:44:30 [INFO] - Uploading Adobe Acrobat Reader DC to Intune...
+2026-04-03 15:44:54 [INFO] - Successfully uploaded Adobe Acrobat Reader DC to Intune
+2026-04-03 15:44:54 [INFO] - App ID: bb8a97e8-1228-4e9e-abcf-99a58d5a3631
+2026-04-03 15:44:54 [INFO] - Display Name: Adobe Acrobat Reader DC
+2026-04-03 15:44:54 [INFO] - Description: View, print, sign, and annotate PDF files.
+2026-04-03 15:44:54 [INFO] - Publisher: Adobe
+2026-04-03 15:44:54 [INFO] - Adding 'All Users' assignment to Adobe Acrobat Reader DC
+2026-04-03 15:44:55 [INFO] - Successfully added 'All Users' assignment to Adobe Acrobat Reader DC
+2026-04-03 15:44:55 [INFO] - Starting cleanup operations...
+2026-04-03 15:44:56 [INFO] - Removed temporary file: C:\IntunePackages\Adobe_Acrobat_Reader_DC_DetectionScript.ps1
+2026-04-03 15:44:56 [INFO] - Removed temporary file: C:\IntunePackages\Adobe_Acrobat_Reader_DC_uninstall.ps1
+2026-04-03 15:44:56 [INFO] - Removed temporary file: C:\IntunePackages\Adobe_Acrobat_Reader_DC.intunewin
+2026-04-03 15:44:56 [INFO] - Removed temporary file: C:\IntunePackages\Adobe_Acrobat_Reader_DC.ps1
+2026-04-03 15:44:56 [INFO] - Removed temporary file: C:\IntunePackages\IntuneWinAppUtil.exe
+2026-04-03 15:44:56 [INFO] - Removed temporary directory: C:\IntunePackages
+2026-04-03 15:44:56 [INFO] - Script execution completed. Intune Graph session will close automatically.
+2026-04-03 15:45:02 [INFO] - Stopped transcript logging
+2026-04-03 15:47:29 [INFO] - Starting Azure AD app removal process...
+2026-04-03 15:47:29 [INFO] - Found App ID: ffb8c38d-1679-407a-94ac-67e7f9203549
+2026-04-03 15:47:29 [INFO] - Connecting to Microsoft Graph...
+2026-04-03 15:47:29 [INFO] - Successfully connected to Microsoft Graph
+2026-04-03 15:47:29 [INFO] - Attempting to remove Azure AD application...
+2026-04-03 15:47:29 [INFO] - Successfully removed Azure AD application
+2026-04-03 15:47:29 [INFO] - Starting credential removal process...
+2026-04-03 15:47:29 [INFO] - Current credentials exist: True
+2026-04-03 15:47:29 [INFO] - Clearing credentials from memory...
+2026-04-03 15:47:29 [INFO] - Credentials cleared from memory
+2026-04-03 15:47:29 [INFO] - Saving updated config to: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\config.json
+2026-04-03 15:47:30 [INFO] - Config file updated successfully
+2026-04-03 15:47:30 [INFO] - Credential removal completed successfully
+2026-04-03 15:47:30 [INFO] - Starting Graph credential removal process...
+2026-04-03 15:47:55 [INFO] - Starting initialization of required modules...
+2026-04-03 15:47:55 [INFO] - Processing module: Microsoft.Graph.Applications
+2026-04-03 15:47:55 [INFO] - Module Microsoft.Graph.Applications is already loaded (Version: 2.34.0)
+2026-04-03 15:47:55 [INFO] - Processing module: Microsoft.Graph.Identity.DirectoryManagement
+2026-04-03 15:47:55 [INFO] - Module Microsoft.Graph.Identity.DirectoryManagement is already loaded (Version: 2.34.0)
+2026-04-03 15:47:55 [INFO] - Processing module: IntuneWin32App
+2026-04-03 15:47:55 [INFO] - Module IntuneWin32App is already loaded (Version: 1.4.4)
+2026-04-03 15:47:55 [INFO] - Processing module: Microsoft.WinGet.Client
+2026-04-03 15:47:55 [INFO] - Module Microsoft.WinGet.Client is already loaded (Version: 1.11.460)
+2026-04-03 15:47:55 [INFO] - All required modules initialized successfully
+2026-04-03 15:47:55 [INFO] - Checking current winget version...
+2026-04-03 15:47:56 [INFO] - Latest winget version available: 1.28.190
+2026-04-03 15:47:56 [INFO] - winget is up to date (version 1.28.220).
+2026-04-03 15:47:56 [INFO] - Loaded apps from config file successfully.
+2026-04-03 15:48:29 [INFO] - Loaded apps from config file successfully.
+2026-04-03 15:48:29 [INFO] - Added new app from Winget: Google Chrome
+2026-04-03 15:48:43 [INFO] - Loaded apps from config file successfully.
+2026-04-03 15:48:43 [INFO] - Added new app from Chocolatey: Google Chrome (GoogleChrome)
+2026-04-06 14:02:16 [INFO] - Starting Azure AD app removal process...
+2026-04-06 14:02:16 [INFO] - No App ID found in config, skipping app removal
+2026-04-06 14:02:16 [INFO] - Starting credential removal process...
+2026-04-06 14:02:16 [INFO] - Current credentials exist: False
+2026-04-06 14:02:16 [INFO] - Clearing credentials from memory...
+2026-04-06 14:02:16 [INFO] - Credentials cleared from memory
+2026-04-06 14:02:16 [INFO] - Saving updated config to: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\config.json
+2026-04-06 14:02:16 [INFO] - Config file updated successfully
+2026-04-06 14:02:16 [INFO] - Credential removal completed successfully
+2026-04-06 14:02:16 [INFO] - Starting Graph credential removal process...
+2026-04-08 08:58:08 [INFO] - Starting initialization of required modules...
+2026-04-08 08:58:08 [INFO] - Processing module: Microsoft.Graph.Applications
+2026-04-08 08:58:08 [INFO] - Module Microsoft.Graph.Applications is already loaded (Version: 2.34.0)
+2026-04-08 08:58:08 [INFO] - Processing module: Microsoft.Graph.Identity.DirectoryManagement
+2026-04-08 08:58:08 [INFO] - Module Microsoft.Graph.Identity.DirectoryManagement is already loaded (Version: 2.34.0)
+2026-04-08 08:58:08 [INFO] - Processing module: IntuneWin32App
+2026-04-08 08:58:08 [INFO] - Module IntuneWin32App is already loaded (Version: 1.4.4)
+2026-04-08 08:58:08 [INFO] - Processing module: Microsoft.WinGet.Client
+2026-04-08 08:58:08 [INFO] - Module Microsoft.WinGet.Client is already loaded (Version: 1.11.460)
+2026-04-08 08:58:08 [INFO] - All required modules initialized successfully
+2026-04-08 08:58:08 [INFO] - Checking current winget version...
+2026-04-08 08:58:09 [INFO] - Latest winget version available: 1.28.190
+2026-04-08 08:58:09 [INFO] - winget is up to date (version 1.28.220).
+2026-04-08 08:58:09 [INFO] - Loaded apps from config file successfully.
+2026-04-08 08:58:57 [INFO] - Starting Azure AD app removal process...
+2026-04-08 08:58:57 [INFO] - No App ID found in config, skipping app removal
+2026-04-08 08:58:57 [INFO] - Starting credential removal process...
+2026-04-08 08:58:57 [INFO] - Current credentials exist: False
+2026-04-08 08:58:57 [INFO] - Clearing credentials from memory...
+2026-04-08 08:58:57 [INFO] - Credentials cleared from memory
+2026-04-08 08:58:57 [INFO] - Saving updated config to: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\config.json
+2026-04-08 08:58:57 [INFO] - Config file updated successfully
+2026-04-08 08:58:57 [INFO] - Credential removal completed successfully
+2026-04-08 08:58:57 [INFO] - Starting Graph credential removal process...
+2026-04-08 09:12:52 [INFO] - Starting initialization of required modules...
+2026-04-08 09:12:52 [INFO] - Processing module: Microsoft.Graph.Applications
+2026-04-08 09:12:52 [INFO] - Module Microsoft.Graph.Applications is already loaded (Version: 2.34.0)
+2026-04-08 09:12:52 [INFO] - Processing module: Microsoft.Graph.Identity.DirectoryManagement
+2026-04-08 09:12:52 [INFO] - Module Microsoft.Graph.Identity.DirectoryManagement is already loaded (Version: 2.34.0)
+2026-04-08 09:12:52 [INFO] - Processing module: IntuneWin32App
+2026-04-08 09:12:52 [INFO] - Module IntuneWin32App is already loaded (Version: 1.4.4)
+2026-04-08 09:12:52 [INFO] - Processing module: Microsoft.WinGet.Client
+2026-04-08 09:12:52 [INFO] - Module Microsoft.WinGet.Client is already loaded (Version: 1.11.460)
+2026-04-08 09:12:52 [INFO] - All required modules initialized successfully
+2026-04-08 09:12:52 [INFO] - Checking current winget version...
+2026-04-08 09:12:53 [INFO] - Latest winget version available: 1.28.190
+2026-04-08 09:12:53 [INFO] - winget is up to date (version 1.28.220).
+2026-04-08 09:12:53 [INFO] - Loaded apps from config file successfully.
+2026-04-08 09:17:22 [INFO] - Starting Azure AD app removal process...
+2026-04-08 09:17:22 [INFO] - No App ID found in config, skipping app removal
+2026-04-08 09:17:22 [INFO] - Starting credential removal process...
+2026-04-08 09:17:22 [INFO] - Current credentials exist: False
+2026-04-08 09:17:22 [INFO] - Clearing credentials from memory...
+2026-04-08 09:17:22 [INFO] - Credentials cleared from memory
+2026-04-08 09:17:22 [INFO] - Saving updated config to: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\config.json
+2026-04-08 09:17:22 [INFO] - Config file updated successfully
+2026-04-08 09:17:22 [INFO] - Credential removal completed successfully
+2026-04-08 09:17:22 [INFO] - Starting Graph credential removal process...
+2026-04-08 09:19:54 [INFO] - Starting initialization of required modules...
+2026-04-08 09:19:54 [INFO] - Processing module: Microsoft.Graph.Applications
+2026-04-08 09:19:54 [INFO] - Module Microsoft.Graph.Applications is already loaded (Version: 2.34.0)
+2026-04-08 09:19:54 [INFO] - Processing module: Microsoft.Graph.Identity.DirectoryManagement
+2026-04-08 09:19:54 [INFO] - Module Microsoft.Graph.Identity.DirectoryManagement is already loaded (Version: 2.34.0)
+2026-04-08 09:19:54 [INFO] - Processing module: IntuneWin32App
+2026-04-08 09:19:54 [INFO] - Module IntuneWin32App is already loaded (Version: 1.4.4)
+2026-04-08 09:19:54 [INFO] - Processing module: Microsoft.WinGet.Client
+2026-04-08 09:19:54 [INFO] - Module Microsoft.WinGet.Client is already loaded (Version: 1.11.460)
+2026-04-08 09:19:54 [INFO] - All required modules initialized successfully
+2026-04-08 09:19:54 [INFO] - Checking current winget version...
+2026-04-08 09:19:54 [INFO] - Latest winget version available: 1.28.190
+2026-04-08 09:19:54 [INFO] - winget is up to date (version 1.28.220).
+2026-04-08 09:19:55 [INFO] - Loaded apps from config file successfully.
+2026-04-08 09:20:00 [INFO] - Starting Azure AD app removal process...
+2026-04-08 09:20:00 [INFO] - No App ID found in config, skipping app removal
+2026-04-08 09:20:00 [INFO] - Starting credential removal process...
+2026-04-08 09:20:00 [INFO] - Current credentials exist: False
+2026-04-08 09:20:00 [INFO] - Clearing credentials from memory...
+2026-04-08 09:20:00 [INFO] - Credentials cleared from memory
+2026-04-08 09:20:00 [INFO] - Saving updated config to: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Choco2Intune\config.json
+2026-04-08 09:20:00 [INFO] - Config file updated successfully
+2026-04-08 09:20:00 [INFO] - Credential removal completed successfully
+2026-04-08 09:20:00 [INFO] - Starting Graph credential removal process...

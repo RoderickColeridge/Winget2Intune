@@ -1,0 +1,111 @@
+**********************
+PowerShell transcript start
+Start time: 20260403140228
+Username: ONE\coleridge_r
+RunAs User: ONE\coleridge_r
+Configuration Name: 
+Machine: DT-PW0FBZJF (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll
+Process ID: 39224
+PSVersion: 7.5.4
+PSEdition: Core
+GitCommitId: 7.5.4
+OS: Microsoft Windows 10.0.26200
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+PS>TerminatingError(Invoke-WebRequest): "
+
+
+    
+        
+        
+        
+        Chocolatey Software
+        
+        
+        
+    
+    
+        
+        
+            
+                
+                    
+
+
+
+    
+    Error 404: Page Not Found.
+    Try Searching Again
+    Still nothing? File a bug in the Chocolatey Community issue tracker so we can fix it.
+    
+        
+            
+            
+            
+                
+                k
+            
+        
+    
+
+
+                
+            
+        
+        
+            
+                &copy; 2026 Chocolatey Software, Inc.
+                Deployed from bde1a8f3ab. You are on IP-0A186EFB. Page generated 03 Apr 2026 12:02:31 +00:00.
+            
+        
+        
+        
+        
+    
+"
+VERBOSE: Access token refresh is not required, remaining minutes until expiration: 46
+VERBOSE: Attempting to gather additional meta data from .intunewin file: C:\IntunePackages\adobereader.intunewin
+VERBOSE: Successfully gathered additional meta data from .intunewin file
+VERBOSE: Start constructing basic layout of Win32 app body
+VERBOSE: Constructed the basic layout for 'EXE' Win32 app body type
+VERBOSE: Detection rule objects passed validation checks, attempting to add to existing Win32 app body
+VERBOSE: Retrieving default set of return codes for Win32 app body construction
+VERBOSE: Adding array of return codes to Win32 app body construction
+VERBOSE: Attempting to create Win32 app using constructed body converted to JSON content
+VERBOSE: POST https://graph.microsoft.com/Beta/deviceAppManagement/mobileApps
+VERBOSE: Successfully created Win32 app with ID: fccd5f2a-d795-46af-aba8-8f4228934809
+VERBOSE: Attempting to create contentVersions resource for the Win32 app
+VERBOSE: POST https://graph.microsoft.com/Beta/deviceAppManagement/mobileApps/fccd5f2a-d795-46af-aba8-8f4228934809/microsoft.graph.win32LobApp/contentVersions
+VERBOSE: Successfully created contentVersions resource with ID: 1
+VERBOSE: Constructing Win32 app content file body for uploading of .intunewin file
+VERBOSE: POST https://graph.microsoft.com/Beta/deviceAppManagement/mobileApps/fccd5f2a-d795-46af-aba8-8f4228934809/microsoft.graph.win32LobApp/contentVersions/1/files
+VERBOSE: Waiting for Intune service to process contentVersions/files request
+VERBOSE: GET https://graph.microsoft.com/Beta/deviceAppManagement/mobileApps/fccd5f2a-d795-46af-aba8-8f4228934809/microsoft.graph.win32LobApp/contentVersions/1/files/95179291-ccf5-46ec-a5ef-b6a6551ae4b1
+VERBOSE: Intune service request for operation 'AzureStorageUriRequest' was successful with uploadState: azureStorageUriRequestSuccess
+VERBOSE: Using native method for file transfer
+VERBOSE: SAS Uri renewal timer has elapsed for: 0 minute 0 seconds
+VERBOSE: Uploading file to Azure Storage blob, processing chunk '1' of '1'
+VERBOSE: Requested HTTP/1.1 PUT with 33616-byte payload
+VERBOSE: Received HTTP/1.1 0-byte response of content type
+VERBOSE: Requested HTTP/1.1 PUT with 86-byte payload
+VERBOSE: Received HTTP/1.1 0-byte response of content type
+VERBOSE: Content encoding: utf-8
+VERBOSE: POST https://graph.microsoft.com/Beta/deviceAppManagement/mobileApps/fccd5f2a-d795-46af-aba8-8f4228934809/microsoft.graph.win32LobApp/contentVersions/1/files/95179291-ccf5-46ec-a5ef-b6a6551ae4b1/commit
+VERBOSE: Waiting for Intune service to process the commit file request
+VERBOSE: GET https://graph.microsoft.com/Beta/deviceAppManagement/mobileApps/fccd5f2a-d795-46af-aba8-8f4228934809/microsoft.graph.win32LobApp/contentVersions/1/files/95179291-ccf5-46ec-a5ef-b6a6551ae4b1
+VERBOSE: Intune service request for operation 'CommitFile' is in pending state, sleeping for 10 seconds
+VERBOSE: GET https://graph.microsoft.com/Beta/deviceAppManagement/mobileApps/fccd5f2a-d795-46af-aba8-8f4228934809/microsoft.graph.win32LobApp/contentVersions/1/files/95179291-ccf5-46ec-a5ef-b6a6551ae4b1
+VERBOSE: Intune service request for operation 'CommitFile' was successful with uploadState: commitFileSuccess
+VERBOSE: Updating committedContentVersion property with ID '1' for Win32 app with ID: fccd5f2a-d795-46af-aba8-8f4228934809
+VERBOSE: PATCH https://graph.microsoft.com/Beta/deviceAppManagement/mobileApps/fccd5f2a-d795-46af-aba8-8f4228934809
+VERBOSE: Successfully created Win32 app and committed file content to Azure Storage blob
+VERBOSE: GET https://graph.microsoft.com/Beta/deviceAppManagement/mobileApps/fccd5f2a-d795-46af-aba8-8f4228934809
+**********************
+PowerShell transcript end
+End time: 20260403140252
+**********************

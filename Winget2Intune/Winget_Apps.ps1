@@ -109,11 +109,6 @@
 # Built in a winget version check when running the script to ensure most recent winget.
 # Date: 25-07-2025
 #########################################
-# Version 2.1.0
-# Added Chocolatey package support (Search Choco button, Choco install/uninstall/detection scripts)
-# Renamed WingetId to PackageId in data model (auto-migrated on load)
-# Date: 01-04-2026
-#########################################
 
 # Suppress provider prompts
 $env:POWERSHELL_UPDATECHECK = "Off"
@@ -130,7 +125,7 @@ $repoUrl = "https://raw.githubusercontent.com/RoderickColeridge/Winget2Intune/re
 $versionFileUrl = "https://raw.githubusercontent.com/RoderickColeridge/Winget2Intune/refs/heads/main/Winget2Intune/version.txt"
 
 # Current version of the script
-$currentVersion = "2.1.0"
+$currentVersion = "2.0.4"
 
 # Get the directory of the current script
 $scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Definition
@@ -208,9 +203,8 @@ $listView.Size = New-Object System.Drawing.Size(760,200)
 $listView.View = [System.Windows.Forms.View]::Details
 $listView.FullRowSelect = $true
 $listView.Columns.Add("Display Name", 200)
-$listView.Columns.Add("Package ID", 190)
-$listView.Columns.Add("Publisher", 190)
-$listView.Columns.Add("Source", 120)
+$listView.Columns.Add("Winget ID", 200)
+$listView.Columns.Add("Publisher", 200)
 $form.Controls.Add($listView)
 
 # Create buttons
@@ -249,12 +243,6 @@ $searchButton.Location = New-Object System.Drawing.Point(435,220)
 $searchButton.Size = New-Object System.Drawing.Size(100,23)
 $searchButton.Text = "Search Winget"
 $form.Controls.Add($searchButton)
-
-$searchChocoButton = New-Object System.Windows.Forms.Button
-$searchChocoButton.Location = New-Object System.Drawing.Point(540,220)
-$searchChocoButton.Size = New-Object System.Drawing.Size(110,23)
-$searchChocoButton.Text = "Search Choco"
-$form.Controls.Add($searchChocoButton)
 
 $runButton = New-Object System.Windows.Forms.Button
 $runButton.Location = New-Object System.Drawing.Point(695,220)
@@ -340,30 +328,12 @@ function Load-Apps {
                 $script:config.Credentials = $loadedConfig.Credentials
             }
             
-            # Migrate legacy WingetId field to PackageId + Type
-            $needsSave = $false
             foreach ($app in $script:config.Apps) {
                 if ($null -eq $app) { continue }
-                if ($app.PSObject.Properties['WingetId'] -and -not $app.PSObject.Properties['PackageId']) {
-                    $app | Add-Member -NotePropertyName 'PackageId' -NotePropertyValue $app.WingetId -Force
-                    $app | Add-Member -NotePropertyName 'Type'      -NotePropertyValue 'Winget'      -Force
-                    $needsSave = $true
-                }
-                if (-not $app.PSObject.Properties['Type']) {
-                    $app | Add-Member -NotePropertyName 'Type' -NotePropertyValue 'Winget' -Force
-                    $needsSave = $true
-                }
-            }
-            if ($needsSave) { Save-Config }
-
-            foreach ($app in $script:config.Apps) {
-                if ($null -eq $app) { continue }
-                if (-not $app.DisplayName -or -not $app.PackageId -or -not $app.Publisher) { continue }
+                if (-not $app.DisplayName -or -not $app.WingetId -or -not $app.Publisher) { continue }
                 $item = New-Object System.Windows.Forms.ListViewItem($app.DisplayName)
-                $item.SubItems.Add($app.PackageId)
+                $item.SubItems.Add($app.WingetId)
                 $item.SubItems.Add($app.Publisher)
-                $sourceLabel = if ($app.Type -eq 'Chocolatey') { 'Choco' } else { 'Winget' }
-                $item.SubItems.Add($sourceLabel)
                 $listView.Items.Add($item)
             }
 
@@ -380,7 +350,7 @@ function Load-Apps {
 function Add-App {
     $addForm = New-Object System.Windows.Forms.Form
     $addForm.Text = "Add New App"
-    $addForm.Size = New-Object System.Drawing.Size(300,285)
+    $addForm.Size = New-Object System.Drawing.Size(300,250)
     $addForm.StartPosition = "CenterScreen"
 
     $nameLabel = New-Object System.Windows.Forms.Label
@@ -397,7 +367,7 @@ function Add-App {
     $wingetLabel = New-Object System.Windows.Forms.Label
     $wingetLabel.Location = New-Object System.Drawing.Point(10,50)
     $wingetLabel.Size = New-Object System.Drawing.Size(100,20)
-    $wingetLabel.Text = "Package ID:"
+    $wingetLabel.Text = "Winget ID:"
     $addForm.Controls.Add($wingetLabel)
 
     $wingetTextBox = New-Object System.Windows.Forms.TextBox
@@ -428,22 +398,8 @@ function Add-App {
     $descriptionTextBox.Multiline = $true
     $addForm.Controls.Add($descriptionTextBox)
 
-    $typeLabel = New-Object System.Windows.Forms.Label
-    $typeLabel.Location = New-Object System.Drawing.Point(10,180)
-    $typeLabel.Size = New-Object System.Drawing.Size(100,20)
-    $typeLabel.Text = "Source Type:"
-    $addForm.Controls.Add($typeLabel)
-
-    $typeComboBox = New-Object System.Windows.Forms.ComboBox
-    $typeComboBox.Location = New-Object System.Drawing.Point(120,178)
-    $typeComboBox.Size = New-Object System.Drawing.Size(150,20)
-    $typeComboBox.DropDownStyle = [System.Windows.Forms.ComboBoxStyle]::DropDownList
-    $typeComboBox.Items.AddRange(@('Winget', 'Chocolatey'))
-    $typeComboBox.SelectedIndex = 0
-    $addForm.Controls.Add($typeComboBox)
-
     $okButton = New-Object System.Windows.Forms.Button
-    $okButton.Location = New-Object System.Drawing.Point(120,213)
+    $okButton.Location = New-Object System.Drawing.Point(120,180)
     $okButton.Size = New-Object System.Drawing.Size(75,23)
     $okButton.Text = "OK"
     $okButton.DialogResult = [System.Windows.Forms.DialogResult]::OK
@@ -483,13 +439,12 @@ function Add-App {
         $packageId = $wingetTextBox.Text
 
         # Generate install and uninstall commands using the safe file name
-        $installCommand = "%windir%\sysnative\WindowsPowerShell\v1.0\powershell.exe -Executionpolicy Bypass -file .\$safeFileName.ps1"
+        $installCommand = "%windir%\sysnative\WindowsPowerShell\v1.0\powershell.exe -Executionpolicy Bypass -file .\$safeFileName.ps1 -mode install -log `"$packageId.log`""
         $uninstallCommand = "%windir%\sysnative\WindowsPowerShell\v1.0\powershell.exe -Executionpolicy Bypass -file .\${safeFileName}_uninstall.ps1"
 
         $newApp = @{
-            Type = $typeComboBox.SelectedItem.ToString()
             DisplayName = $nameTextBox.Text
-            PackageId = $wingetTextBox.Text
+            WingetId = $wingetTextBox.Text
             Publisher = $publisherTextBox.Text
             Description = $descriptionTextBox.Text
             InstallCommand = $installCommand
@@ -546,10 +501,8 @@ function Remove-App {
             if ($config.Apps -and $config.Apps.Count -gt 0) {
                 foreach ($app in $config.Apps) {
                     $item = New-Object System.Windows.Forms.ListViewItem($app.DisplayName)
-                    $item.SubItems.Add($app.PackageId)
+                    $item.SubItems.Add($app.WingetId)
                     $item.SubItems.Add($app.Publisher)
-                    $sourceLabel = if ($app.Type -eq 'Chocolatey') { 'Choco' } else { 'Winget' }
-                    $item.SubItems.Add($sourceLabel)
                     $listView.Items.Add($item)
                 }
             }
@@ -864,7 +817,7 @@ function Edit-App {
 
     $editForm = New-Object System.Windows.Forms.Form
     $editForm.Text = "Edit App"
-    $editForm.Size = New-Object System.Drawing.Size(300,285)
+    $editForm.Size = New-Object System.Drawing.Size(300,250)
     $editForm.StartPosition = "CenterScreen"
 
     $nameLabel = New-Object System.Windows.Forms.Label
@@ -882,7 +835,7 @@ function Edit-App {
     $wingetLabel = New-Object System.Windows.Forms.Label
     $wingetLabel.Location = New-Object System.Drawing.Point(10,50)
     $wingetLabel.Size = New-Object System.Drawing.Size(100,20)
-    $wingetLabel.Text = "Package ID:"
+    $wingetLabel.Text = "Winget ID:"
     $editForm.Controls.Add($wingetLabel)
 
     $wingetTextBox = New-Object System.Windows.Forms.TextBox
@@ -916,23 +869,8 @@ function Edit-App {
     $descriptionTextBox.Text = $script:config.Apps | Where-Object { $_.DisplayName -eq $appName } | Select-Object -ExpandProperty Description
     $editForm.Controls.Add($descriptionTextBox)
 
-    $typeLabel = New-Object System.Windows.Forms.Label
-    $typeLabel.Location = New-Object System.Drawing.Point(10,180)
-    $typeLabel.Size = New-Object System.Drawing.Size(100,20)
-    $typeLabel.Text = "Source Type:"
-    $editForm.Controls.Add($typeLabel)
-
-    $typeComboBox = New-Object System.Windows.Forms.ComboBox
-    $typeComboBox.Location = New-Object System.Drawing.Point(120,178)
-    $typeComboBox.Size = New-Object System.Drawing.Size(150,20)
-    $typeComboBox.DropDownStyle = [System.Windows.Forms.ComboBoxStyle]::DropDownList
-    $typeComboBox.Items.AddRange(@('Winget', 'Chocolatey'))
-    $currentAppType = ($script:config.Apps | Where-Object { $_.DisplayName -eq $appName } | Select-Object -ExpandProperty Type -ErrorAction SilentlyContinue)
-    if ($currentAppType -eq 'Chocolatey') { $typeComboBox.SelectedIndex = 1 } else { $typeComboBox.SelectedIndex = 0 }
-    $editForm.Controls.Add($typeComboBox)
-
     $okButton = New-Object System.Windows.Forms.Button
-    $okButton.Location = New-Object System.Drawing.Point(120,213)
+    $okButton.Location = New-Object System.Drawing.Point(120,180)
     $okButton.Size = New-Object System.Drawing.Size(75,23)
     $okButton.Text = "OK"
     $okButton.DialogResult = [System.Windows.Forms.DialogResult]::OK
@@ -965,15 +903,14 @@ function Edit-App {
             
             if ($appToEdit) {
                 $appToEdit.DisplayName = $nameTextBox.Text
-                $appToEdit | Add-Member -NotePropertyName 'PackageId' -NotePropertyValue $wingetTextBox.Text -Force
-                $appToEdit | Add-Member -NotePropertyName 'Type'      -NotePropertyValue $typeComboBox.SelectedItem.ToString() -Force
+                $appToEdit.WingetId = $wingetTextBox.Text
                 $appToEdit.Publisher = $publisherTextBox.Text
                 $appToEdit.Description = $descriptionTextBox.Text
-
+                
                 # Update install and uninstall commands if the name has changed
                 if ($appToEdit.DisplayName -ne $appName) {
                     $safeFileName = $nameTextBox.Text -replace '\s', '_'
-                    $appToEdit.InstallCommand = "%windir%\sysnative\WindowsPowerShell\v1.0\powershell.exe -Executionpolicy Bypass -file .\$safeFileName.ps1"
+                    $appToEdit.InstallCommand = "%windir%\sysnative\WindowsPowerShell\v1.0\powershell.exe -Executionpolicy Bypass -file .\$safeFileName.ps1 -mode install -log `"$packageId.log`""
                     $appToEdit.UninstallCommand = "%windir%\sysnative\WindowsPowerShell\v1.0\powershell.exe -Executionpolicy Bypass -file .\${safeFileName}_uninstall.ps1"
                 }
                 
@@ -1321,123 +1258,6 @@ function Remove-AzureADApp {
     }
 }
 
-# Script-generation helper functions
-
-function Get-ChocoInstallScript {
-    param($app)
-    return @"
-# Chocolatey Install Script for $($app.DisplayName)
-`$PackageName = '$($app.PackageId)'
-
-function Write-Log(`$message) {
-    `$LogMessage = ((Get-Date -Format "MM-dd-yy HH:MM:ss ") + `$message)
-    `$LogPath = "`$env:programdata\Microsoft\IntuneManagementExtension\Logs"
-    if (-not (Test-Path `$LogPath)) {
-        try {
-            New-Item -Path `$LogPath -ItemType Directory -Force | Out-Null
-        }
-        catch {
-            Write-Host "Failed to create log directory: `$(`$_.Exception.Message)"
-        }
-    }
-    `$logFileName = `$PackageName.Replace(" ", "_").Replace("/", "_")
-    if (Test-Path `$LogPath) {
-        `$logFilePath = Join-Path -Path `$LogPath -ChildPath "`$logFileName.log"
-        Out-File -InputObject `$LogMessage -FilePath `$logFilePath -Append -Encoding utf8
-    }
-    Write-Host `$message
-}
-
-Write-Log "Starting Chocolatey install of `$PackageName"
-
-if (-not (Get-Command choco -ErrorAction SilentlyContinue)) {
-    Write-Log "Chocolatey not found. Installing..."
-    try {
-        Set-ExecutionPolicy Bypass -Scope Process -Force
-        [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
-        Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-        Write-Log "Chocolatey installed successfully."
-    }
-    catch {
-        Write-Log "Failed to install Chocolatey: `$(`$_.Exception.Message)"
-        exit 1
-    }
-}
-else {
-    Write-Log "Chocolatey already present."
-}
-
-Write-Log "Installing `$PackageName via Chocolatey..."
-choco install `$PackageName -y --no-progress
-`$exitCode = `$LASTEXITCODE
-Write-Log "choco install exited with code: `$exitCode"
-exit `$exitCode
-"@
-}
-
-function Get-ChocoUninstallScript {
-    param($app)
-    return @"
-# Chocolatey Uninstall Script for $($app.DisplayName)
-`$PackageName = '$($app.PackageId)'
-
-function Write-Log(`$message) {
-    `$LogMessage = ((Get-Date -Format "MM-dd-yy HH:MM:ss ") + `$message)
-    `$LogPath = "`$env:programdata\Microsoft\IntuneManagementExtension\Logs"
-    if (-not (Test-Path `$LogPath)) {
-        try {
-            New-Item -Path `$LogPath -ItemType Directory -Force | Out-Null
-        }
-        catch {
-            Write-Host "Failed to create log directory: `$(`$_.Exception.Message)"
-        }
-    }
-    `$logFileName = `$PackageName.Replace(" ", "_").Replace("/", "_")
-    if (Test-Path `$LogPath) {
-        `$logFilePath = Join-Path -Path `$LogPath -ChildPath "`$logFileName_uninstall.log"
-        Out-File -InputObject `$LogMessage -FilePath `$logFilePath -Append -Encoding utf8
-    }
-    Write-Host `$message
-}
-
-Write-Log "Starting Chocolatey uninstall of `$PackageName"
-
-if (Get-Command choco -ErrorAction SilentlyContinue) {
-    choco uninstall `$PackageName -y --no-progress
-    `$exitCode = `$LASTEXITCODE
-    Write-Log "choco uninstall exited with code: `$exitCode"
-    exit `$exitCode
-}
-else {
-    Write-Log "Chocolatey not found. `$PackageName may not be installed."
-    exit 0
-}
-"@
-}
-
-function Get-ChocoDetectionScript {
-    param($app)
-    return @"
-# Detection Script for $($app.DisplayName) (Chocolatey)
-`$PackageName = '$($app.PackageId)'
-
-if (-not (Get-Command choco -ErrorAction SilentlyContinue)) {
-    Write-Output "Chocolatey not installed - `$PackageName not detected"
-    exit 1
-}
-
-`$result = & choco list --local-only --exact `$PackageName 2>&1
-if (`$result | Select-String -SimpleMatch `$PackageName) {
-    Write-Output "`$PackageName detected via Chocolatey"
-    exit 0
-}
-else {
-    Write-Output "`$PackageName not found"
-    exit 1
-}
-"@
-}
-
 # Main script function
 function Run-MainScript {
     try {
@@ -1555,17 +1375,11 @@ function Run-MainScript {
                     # Create a safe file name by replacing spaces with underscores
                     $safeFileName = $app.DisplayName -replace '\s', '_'
 
-                    # Generate install and uninstall scripts based on source type
-                    if ($app.Type -eq 'Chocolatey') {
-                        (Get-ChocoInstallScript   -app $app) | Out-File -FilePath (Join-Path $TempDir "$safeFileName.ps1")   -Encoding UTF8 -ErrorAction Stop
-                        (Get-ChocoUninstallScript -app $app) | Out-File -FilePath (Join-Path $TempDir "${safeFileName}_uninstall.ps1") -Encoding UTF8 -ErrorAction Stop
-                        Log-Message "Created Chocolatey install/uninstall scripts for $($app.DisplayName)."
-                    } else {
                     # Create Winget install script
                     $wingetInstallScriptPath = Join-Path -Path $TempDir -ChildPath "$safeFileName.ps1"
                     $wingetInstallScriptContent = @"
 # Define the Winget Package Name
-`$PackageName = '$($app.PackageId)'
+`$PackageName = '$($app.WingetId)'
 
 function Write-Log(`$message) {
     `$LogMessage = ((Get-Date -Format "MM-dd-yy HH:MM:ss ") + `$message)
@@ -1898,7 +1712,7 @@ function Write-Log(`$message) #Log script messages to temp directory
 }
 
 # Define the Winget Package Name
-`$PackageName = '$($app.PackageId)'
+`$PackageName = '$($app.WingetId)'
 
 function Download-Winget {
     `$ProgressPreference = 'SilentlyContinue'
@@ -2001,8 +1815,7 @@ if (Test-Path `$wingetExe) {
 }
 "@
                     $wingetUninstallScriptContent | Out-File -FilePath $wingetUninstallScriptPath -Encoding UTF8 -ErrorAction Stop
-                    Log-Message "Created Winget install/uninstall scripts for $($app.DisplayName)."
-                    } # end else (Winget scripts)
+                    Log-Message "Created Winget uninstall script for $($app.DisplayName)."
 
                     # Package the script using IntuneWinAppUtil.exe
                     $outputFolder = "C:\IntunePackages"
@@ -2013,14 +1826,10 @@ if (Test-Path `$wingetExe) {
 
                     # Create detection script
                     $detectionScriptPath = Join-Path -Path $outputFolder -ChildPath "${safeFileName}_DetectionScript.ps1"
-                    if ($app.Type -eq 'Chocolatey') {
-                        (Get-ChocoDetectionScript -app $app) | Out-File -FilePath $detectionScriptPath -Encoding UTF8 -ErrorAction Stop
-                        Log-Message "Created Chocolatey detection script for $($app.DisplayName)."
-                    } else {
                     $detectionScriptContent = @"
 # Detection Script for $($app.DisplayName)
 
-`$PackageName = '$($app.PackageId)'
+`$PackageName = '$($app.WingetId)'
 
 # Try ProgramData location first
 `$ProgramDataPath = "`${env:ProgramData}\Microsoft.DesktopAppInstaller"
@@ -2060,7 +1869,6 @@ catch {
 "@
                     $detectionScriptContent | Out-File -FilePath $detectionScriptPath -Encoding UTF8 -ErrorAction Stop
                     Log-Message "Created enhanced detection script for $($app.DisplayName)."
-                    } # end else (Winget detection)
 
                     # Get metadata and create rules
                     $intuneWinMetaData = Get-IntuneWin32AppMetaData -FilePath $intuneWinFile
@@ -2069,7 +1877,7 @@ catch {
 
                     # Check for icon
                     $iconsDir = Join-Path -Path $scriptDirectory -ChildPath "Icons"
-                    $iconPath = Join-Path -Path $iconsDir -ChildPath "$($app.PackageId).png"
+                    $iconPath = Join-Path -Path $iconsDir -ChildPath "$($app.WingetId).png"
 
                     # Create the base parameters for Add-IntuneWin32App
                     $intuneAppParams = @{
@@ -2090,22 +1898,13 @@ catch {
                     }
 
                     # Check if icon file exists, if not, download it
-                    if (-not (Test-Path $iconPath)) {
-                        if ($app.Type -eq 'Chocolatey') {
-                            # Use the IconUrl stored from the API at search time (most reliable)
-                            $iconUrl = $app.IconUrl
-                        } else {
-                            $iconUrl = "https://api.winstall.app/icons/$($app.PackageId).png"
-                        }
-                        if (-not [string]::IsNullOrWhiteSpace($iconUrl)) {
+                        if (-not (Test-Path $iconPath)) {
+                            $iconUrl = "https://api.winstall.app/icons/$($app.WingetId).png"
                             try {
                                 Invoke-WebRequest -Uri $iconUrl -OutFile $iconPath -ErrorAction Stop
                                 Log-Message "Downloaded icon from $iconUrl"
                             } catch {
                                 Log-Message "Could not download icon from $iconUrl"
-                            }
-                        } else {
-                            Log-Message "No icon URL available for $($app.DisplayName), proceeding without icon"
                         }
                     }
 
@@ -2369,9 +2168,8 @@ $description = $description -replace 'â€�', '"'
             $uninstallCommand = "%windir%\sysnative\WindowsPowerShell\v1.0\powershell.exe -Executionpolicy Bypass -file .\${safeFileName}_uninstall.ps1"
 
             $newApp = @{
-                Type = 'Winget'
                 DisplayName = $displayName
-                PackageId = $wingetId
+                WingetId = $wingetId
                 Publisher = $publisher
                 Description = $description
                 InstallCommand = $installCommand
@@ -2382,169 +2180,6 @@ $description = $description -replace 'â€�', '"'
             Save-Config
             Load-Apps
             Log-Message "Added new app from Winget: $displayName"
-            $searchForm.Close()
-        }
-    })
-
-    $searchForm.ShowDialog()
-}
-
-# Define the Search-ChocoApps function
-function Search-ChocoApps {
-    $searchForm = New-Object System.Windows.Forms.Form
-    $searchForm.Text = "Search Chocolatey Apps"
-    $searchForm.Size = New-Object System.Drawing.Size(800,420)
-    $searchForm.StartPosition = "CenterScreen"
-
-    $searchLabel = New-Object System.Windows.Forms.Label
-    $searchLabel.Location = New-Object System.Drawing.Point(10,20)
-    $searchLabel.Size = New-Object System.Drawing.Size(100,20)
-    $searchLabel.Text = "Search Term:"
-    $searchForm.Controls.Add($searchLabel)
-
-    $searchTextBox = New-Object System.Windows.Forms.TextBox
-    $searchTextBox.Location = New-Object System.Drawing.Point(120,20)
-    $searchTextBox.Size = New-Object System.Drawing.Size(350,20)
-    $searchForm.Controls.Add($searchTextBox)
-
-    $searchButton = New-Object System.Windows.Forms.Button
-    $searchButton.Location = New-Object System.Drawing.Point(480,20)
-    $searchButton.Size = New-Object System.Drawing.Size(75,23)
-    $searchButton.Text = "Search"
-    $searchForm.Controls.Add($searchButton)
-
-    $resultListView = New-Object System.Windows.Forms.ListView
-    $resultListView.Location = New-Object System.Drawing.Point(10,50)
-    $resultListView.Size = New-Object System.Drawing.Size(760,270)
-    $resultListView.View = [System.Windows.Forms.View]::Details
-    $resultListView.FullRowSelect = $true
-    $resultListView.Columns.Add("Name", 230)
-    $resultListView.Columns.Add("Package ID", 180)
-    $resultListView.Columns.Add("Version", 90)
-    $resultListView.Columns.Add("Downloads", 90)
-    $searchForm.Controls.Add($resultListView)
-
-    $addButton = New-Object System.Windows.Forms.Button
-    $addButton.Location = New-Object System.Drawing.Point(350,330)
-    $addButton.Size = New-Object System.Drawing.Size(75,23)
-    $addButton.Text = "Add"
-    $addButton.Enabled = $false
-    $searchForm.Controls.Add($addButton)
-
-    # Store raw API results so the Add handler can access Publisher/Description
-    $script:chocoSearchResults = @()
-
-    $performSearch = {
-        $resultListView.Items.Clear()
-        $script:chocoSearchResults = @()
-        $searchTerm = $searchTextBox.Text
-        if ([string]::IsNullOrWhiteSpace($searchTerm)) { return }
-
-        $searchButton.Enabled = $false
-        $searchButton.Text = "Searching..."
-        $searchForm.Cursor = [System.Windows.Forms.Cursors]::WaitCursor
-
-        try {
-            $encodedTerm = [Uri]::EscapeDataString($searchTerm)
-            $apiUrl = "https://community.chocolatey.org/api/v2/Search()?searchTerm='$encodedTerm'&targetFramework=''&includePrerelease=false&`$filter=IsLatestVersion+eq+true&`$top=50"
-            [xml]$response = (Invoke-WebRequest -Uri $apiUrl -UseBasicParsing -ErrorAction Stop).Content
-            $entries = $response.feed.entry
-            if ($entries) {
-                $script:chocoSearchResults = $entries
-                foreach ($entry in $entries) {
-                    $pkgId    = $entry.title.'#text'   # title IS the package ID in Chocolatey
-                    $title    = if ($entry.properties.Title) { $entry.properties.Title } else { $pkgId }
-                    $version  = $entry.properties.Version
-                    $dlCount  = [string]$entry.properties.DownloadCount
-                    if (-not $dlCount) { $dlCount = '0' }
-
-                    $item = New-Object System.Windows.Forms.ListViewItem($title)
-                    $item.SubItems.Add($pkgId)
-                    $item.SubItems.Add($version)
-                    $item.SubItems.Add($dlCount)
-                    $resultListView.Items.Add($item)
-                }
-            }
-
-            if ($resultListView.Items.Count -eq 0) {
-                [System.Windows.Forms.MessageBox]::Show(
-                    "No results found for: $searchTerm",
-                    "No Results",
-                    [System.Windows.Forms.MessageBoxButtons]::OK,
-                    [System.Windows.Forms.MessageBoxIcon]::Information)
-            }
-        }
-        catch {
-            [System.Windows.Forms.MessageBox]::Show(
-                "Error during Chocolatey search: $($_.Exception.Message)",
-                "Search Error",
-                [System.Windows.Forms.MessageBoxButtons]::OK,
-                [System.Windows.Forms.MessageBoxIcon]::Error)
-        }
-        finally {
-            $searchButton.Enabled = $true
-            $searchButton.Text = "Search"
-            $searchForm.Cursor = [System.Windows.Forms.Cursors]::Default
-        }
-    }
-
-    $searchTextBox.Add_KeyDown({
-        if ($_.KeyCode -eq [System.Windows.Forms.Keys]::Enter) {
-            $_.SuppressKeyPress = $true
-            & $performSearch
-        }
-    })
-
-    $searchButton.Add_Click($performSearch)
-
-    $resultListView.Add_SelectedIndexChanged({
-        $addButton.Enabled = $resultListView.SelectedItems.Count -gt 0
-    })
-
-    $addButton.Add_Click({
-        if ($resultListView.SelectedItems.Count -gt 0) {
-            $selectedItem = $resultListView.SelectedItems[0]
-            $displayName  = $selectedItem.Text
-            $pkgId        = $selectedItem.SubItems[1].Text
-            $version      = $selectedItem.SubItems[2].Text
-
-            # Look up full metadata from cached results (match by title which equals package ID)
-            $entry = $script:chocoSearchResults | Where-Object { $_.title.'#text' -eq $pkgId } | Select-Object -First 1
-            $publisher   = ""
-            $description = ""
-            $iconUrl     = ""
-            if ($entry) {
-                $publisher   = if ($entry.author.name) { $entry.author.name } else { $entry.properties.Authors }
-                $description = $entry.summary.'#text'
-                if (-not $description) { $description = $entry.properties.Description }
-                $iconUrl = $entry.properties.IconUrl
-            }
-
-            # Sanitize description
-            $description = $description -replace 'ÔÇ£', '"' -replace 'ÔÇØ', '"' -replace 'ÔÇÖ', "'" `
-                                        -replace 'ÔÇô', '-' -replace 'â€"', '-' -replace 'â€˜', "'" `
-                                        -replace 'â€™', "'" -replace 'â€œ', '"' -replace 'â€', '"'
-
-            $safeFileName    = $displayName -replace '\s', '_'
-            $installCommand  = "%windir%\sysnative\WindowsPowerShell\v1.0\powershell.exe -Executionpolicy Bypass -file .\$safeFileName.ps1"
-            $uninstallCommand = "%windir%\sysnative\WindowsPowerShell\v1.0\powershell.exe -Executionpolicy Bypass -file .\${safeFileName}_uninstall.ps1"
-
-            $newApp = @{
-                Type             = 'Chocolatey'
-                DisplayName      = $displayName
-                PackageId        = $pkgId
-                Version          = $version
-                Publisher        = $publisher
-                Description      = $description
-                IconUrl          = $iconUrl
-                InstallCommand   = $installCommand
-                UninstallCommand = $uninstallCommand
-            }
-
-            $script:config.Apps += $newApp
-            Save-Config
-            Load-Apps
-            Log-Message "Added new app from Chocolatey: $displayName ($pkgId)"
             $searchForm.Close()
         }
     })
@@ -2588,7 +2223,6 @@ $editButton.Add_Click({ Edit-App })
 $removeButton.Add_Click({ Remove-App })
 $runButton.Add_Click({ Run-MainScript })
 $searchButton.Add_Click({ Search-WingetApps })
-$searchChocoButton.Add_Click({ Search-ChocoApps })
 
 # Modify the form load event to initialize modules
 $form.Add_Shown({
