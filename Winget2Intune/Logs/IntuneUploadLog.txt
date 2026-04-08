@@ -61,3 +61,516 @@
 2025-04-26 10:10:34 [INFO] - Config file updated successfully
 2025-04-26 10:10:34 [INFO] - Credential removal completed successfully
 2025-04-26 10:10:34 [INFO] - Starting Graph credential removal process...
+2026-01-14 10:28:27 [INFO] - Starting initialization of required modules...
+2026-01-14 10:28:33 [INFO] - Processing module: Microsoft.Graph.Applications
+2026-01-14 10:28:33 [INFO] - Importing module: Microsoft.Graph.Applications
+2026-01-14 10:28:39 [INFO] - Successfully imported Microsoft.Graph.Applications
+2026-01-14 10:28:39 [INFO] - Processing module: Microsoft.Graph.Identity.DirectoryManagement
+2026-01-14 10:28:39 [INFO] - Importing module: Microsoft.Graph.Identity.DirectoryManagement
+2026-01-14 10:28:43 [INFO] - Successfully imported Microsoft.Graph.Identity.DirectoryManagement
+2026-01-14 10:28:43 [INFO] - Processing module: IntuneWin32App
+2026-01-14 10:28:43 [INFO] - Importing module: IntuneWin32App
+2026-01-14 10:28:51 [INFO] - Successfully imported IntuneWin32App
+2026-01-14 10:28:51 [INFO] - Processing module: Microsoft.WinGet.Client
+2026-01-14 10:28:52 [INFO] - Importing module: Microsoft.WinGet.Client
+2026-01-14 10:28:54 [INFO] - Successfully imported Microsoft.WinGet.Client
+2026-01-14 10:28:54 [INFO] - All required modules initialized successfully
+2026-01-14 10:28:54 [INFO] - Checking current winget version...
+2026-01-14 10:28:54 [INFO] - Latest winget version available: 1.12.440
+2026-01-14 10:28:54 [INFO] - winget is outdated or not found (current: 1.12.350, latest: 1.12.440). Updating...
+2026-01-14 10:29:18 [INFO] - winget updated to version 1.12.440.
+2026-01-14 10:29:18 [INFO] - Loaded apps from config file successfully.
+2026-01-14 10:29:25 [INFO] - Starting app registration process...
+2026-01-14 10:29:25 [INFO] - Connecting to Microsoft Graph...
+2026-01-14 10:30:45 [INFO] - Starting initialization of required modules...
+2026-01-14 10:30:47 [INFO] - Processing module: Microsoft.Graph.Applications
+2026-01-14 10:30:47 [INFO] - Importing module: Microsoft.Graph.Applications
+2026-01-14 10:30:49 [INFO] - Successfully imported Microsoft.Graph.Applications
+2026-01-14 10:30:49 [INFO] - Processing module: Microsoft.Graph.Identity.DirectoryManagement
+2026-01-14 10:30:50 [INFO] - Importing module: Microsoft.Graph.Identity.DirectoryManagement
+2026-01-14 10:30:51 [INFO] - Successfully imported Microsoft.Graph.Identity.DirectoryManagement
+2026-01-14 10:30:51 [INFO] - Processing module: IntuneWin32App
+2026-01-14 10:30:52 [INFO] - Importing module: IntuneWin32App
+2026-01-14 10:30:53 [INFO] - Successfully imported IntuneWin32App
+2026-01-14 10:30:53 [INFO] - Processing module: Microsoft.WinGet.Client
+2026-01-14 10:30:54 [INFO] - Importing module: Microsoft.WinGet.Client
+2026-01-14 10:30:54 [INFO] - Successfully imported Microsoft.WinGet.Client
+2026-01-14 10:30:54 [INFO] - All required modules initialized successfully
+2026-01-14 10:30:54 [INFO] - Checking current winget version...
+2026-01-14 10:30:54 [INFO] - Latest winget version available: 1.12.440
+2026-01-14 10:30:54 [INFO] - winget is up to date (version 1.12.440).
+2026-01-14 10:30:55 [INFO] - Loaded apps from config file successfully.
+2026-01-14 10:31:46 [INFO] - Starting app registration process...
+2026-01-14 10:31:46 [INFO] - Connecting to Microsoft Graph...
+2026-01-14 10:31:50 [INFO] - Creating Azure AD Application: Winget-Intune-App-Deployment
+2026-01-14 10:31:53 [INFO] - Created Azure AD Application
+2026-01-14 10:31:53 [INFO] - Creating service principal...
+2026-01-14 10:31:53 [INFO] - Created service principal
+2026-01-14 10:31:53 [INFO] - Creating client secret...
+2026-01-14 10:31:54 [INFO] - Granting admin consent for application permissions...
+2026-01-14 10:31:54 [INFO] - Granted consent for DeviceManagementApps.ReadWrite.All
+2026-01-14 10:31:54 [INFO] - Granted consent for DeviceManagementConfiguration.ReadWrite.All
+2026-01-14 10:31:55 [INFO] - Granted consent for DeviceManagementManagedDevices.ReadWrite.All
+2026-01-14 10:31:55 [INFO] - Granted consent for Directory.Read.All
+2026-01-14 10:31:55 [INFO] - Granted consent for Group.ReadWrite.All
+2026-01-14 10:31:55 [INFO] - Granted consent for DeviceManagementRBAC.Read.All
+2026-01-14 10:31:55 [INFO] - Granted consent for DeviceManagementRBAC.ReadWrite.All
+2026-01-14 10:31:56 [INFO] - Granted consent for Application.ReadWrite.All
+2026-01-14 10:31:56 [INFO] - Saved credentials to config file
+2026-01-14 10:37:35 [INFO] - Loaded apps from config file successfully.
+2026-01-14 10:37:35 [INFO] - Added new app from Winget: Zoom Workplace
+2026-01-14 11:07:24 [INFO] - Initializing Graph connection...
+2026-01-14 11:07:24 [INFO] - Using existing Graph connection
+2026-01-14 11:07:26 [INFO] - Connected to Intune Graph API successfully
+2026-01-14 11:07:26 [INFO] - Started transcript logging to: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\Logs\MainScript_20260114_110726.txt
+2026-01-14 11:07:26 [INFO] - Loading existing configuration from: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\config.json
+2026-01-14 11:07:26 [INFO] - Configuration loaded successfully
+2026-01-14 11:07:32 [INFO] - User selected assignment: AllDevices=False, AllUsers=True, NoAssignment=False
+2026-01-14 11:07:32 [INFO] - Created C:\IntunePackages directory.
+2026-01-14 11:07:32 [INFO] - Downloaded IntuneWinAppUtil.exe successfully.
+2026-01-14 11:07:32 [INFO] - Starting process for Zoom Workplace
+2026-01-14 11:07:32 [INFO] - Created Winget install script for Zoom Workplace.
+2026-01-14 11:07:32 [INFO] - Created Winget uninstall script for Zoom Workplace.
+2026-01-14 11:07:33 [INFO] - Packaged Zoom Workplace into C:\IntunePackages\Zoom_Workplace.intunewin successfully.
+2026-01-14 11:07:33 [INFO] - Created enhanced detection script for Zoom Workplace.
+2026-01-14 11:07:33 [INFO] - Found icon file for Zoom Workplace at: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\Icons\Zoom.Zoom.png
+2026-01-14 11:07:33 [INFO] - Successfully converted icon to Base64
+2026-01-14 11:07:33 [INFO] - Uploading Zoom Workplace to Intune...
+2026-01-14 11:07:58 [INFO] - Successfully uploaded Zoom Workplace to Intune
+2026-01-14 11:07:58 [INFO] - App ID: eefc683d-4692-4cce-8a14-ac94888e4567
+2026-01-14 11:07:58 [INFO] - Display Name: Zoom Workplace
+2026-01-14 11:07:58 [INFO] - Description: Zoom's secure, reliable video platform powers all of your communication needs, including meetings, chat, phone, webinars, and online events.
+2026-01-14 11:07:58 [INFO] - Publisher: Zoom
+2026-01-14 11:07:58 [INFO] - Adding 'All Users' assignment to Zoom Workplace
+2026-01-14 11:07:59 [INFO] - Successfully added 'All Users' assignment to Zoom Workplace
+2026-01-14 11:07:59 [INFO] - Starting cleanup operations...
+2026-01-14 11:07:59 [INFO] - Removed temporary file: C:\IntunePackages\IntuneWinAppUtil.exe
+2026-01-14 11:07:59 [INFO] - Removed temporary file: C:\IntunePackages\Zoom_Workplace_DetectionScript.ps1
+2026-01-14 11:07:59 [INFO] - Removed temporary file: C:\IntunePackages\Zoom_Workplace_uninstall.ps1
+2026-01-14 11:07:59 [INFO] - Removed temporary file: C:\IntunePackages\Zoom_Workplace.intunewin
+2026-01-14 11:07:59 [INFO] - Removed temporary file: C:\IntunePackages\Zoom_Workplace.ps1
+2026-01-14 11:07:59 [INFO] - Removed temporary directory: C:\IntunePackages
+2026-01-14 11:07:59 [INFO] - Script execution completed. Intune Graph session will close automatically.
+2026-01-14 11:08:06 [INFO] - Stopped transcript logging
+2026-01-14 13:52:14 [INFO] - Starting Azure AD app removal process...
+2026-01-14 13:52:14 [INFO] - Found App ID: d8490f48-711c-4bc9-b7df-692d8a0ffd36
+2026-01-14 13:52:14 [INFO] - Connecting to Microsoft Graph...
+2026-01-14 13:52:27 [INFO] - Successfully connected to Microsoft Graph
+2026-01-14 13:52:27 [INFO] - Attempting to remove Azure AD application...
+2026-01-14 13:52:28 [INFO] - Successfully removed Azure AD application
+2026-01-14 13:52:28 [INFO] - Starting credential removal process...
+2026-01-14 13:52:28 [INFO] - Current credentials exist: True
+2026-01-14 13:52:28 [INFO] - Clearing credentials from memory...
+2026-01-14 13:52:28 [INFO] - Credentials cleared from memory
+2026-01-14 13:52:28 [INFO] - Saving updated config to: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\config.json
+2026-01-14 13:52:28 [INFO] - Config file updated successfully
+2026-01-14 13:52:28 [INFO] - Credential removal completed successfully
+2026-01-14 13:52:28 [INFO] - Starting Graph credential removal process...
+2026-03-04 15:05:01 [INFO] - Starting initialization of required modules...
+2026-03-04 15:05:05 [INFO] - Processing module: Microsoft.Graph.Applications
+2026-03-04 15:05:05 [INFO] - Importing module: Microsoft.Graph.Applications
+2026-03-04 15:05:09 [INFO] - Successfully imported Microsoft.Graph.Applications
+2026-03-04 15:05:09 [INFO] - Processing module: Microsoft.Graph.Identity.DirectoryManagement
+2026-03-04 15:05:10 [INFO] - Importing module: Microsoft.Graph.Identity.DirectoryManagement
+2026-03-04 15:05:12 [INFO] - Successfully imported Microsoft.Graph.Identity.DirectoryManagement
+2026-03-04 15:05:12 [INFO] - Processing module: IntuneWin32App
+2026-03-04 15:05:13 [INFO] - Importing module: IntuneWin32App
+2026-03-04 15:05:19 [INFO] - Successfully imported IntuneWin32App
+2026-03-04 15:05:19 [INFO] - Processing module: Microsoft.WinGet.Client
+2026-03-04 15:05:20 [INFO] - Importing module: Microsoft.WinGet.Client
+2026-03-04 15:05:21 [INFO] - Successfully imported Microsoft.WinGet.Client
+2026-03-04 15:05:21 [INFO] - All required modules initialized successfully
+2026-03-04 15:05:21 [INFO] - Checking current winget version...
+2026-03-04 15:05:21 [INFO] - Latest winget version available: 1.28.190
+2026-03-04 15:05:21 [INFO] - winget is outdated or not found (current: 1.12.460, latest: 1.28.190). Updating...
+2026-03-04 15:05:30 [INFO] - winget updated to version 1.12.470.
+2026-03-04 15:05:30 [INFO] - Loaded apps from config file successfully.
+2026-03-04 15:06:05 [INFO] - Removed app: Adobe Acrobat Reader (64-bit)
+2026-03-04 15:06:05 [INFO] - Successfully removed 1 app(s)
+2026-03-04 15:06:37 [INFO] - Loaded apps from config file successfully.
+2026-03-04 15:06:37 [INFO] - Added new app from Winget: Adobe Acrobat Reader (64-bit)
+2026-03-04 15:06:40 [INFO] - Starting app registration process...
+2026-03-04 15:06:40 [INFO] - Connecting to Microsoft Graph...
+2026-03-04 15:07:08 [INFO] - Creating Azure AD Application: Winget-Intune-App-Deployment
+2026-03-04 15:07:31 [INFO] - Created Azure AD Application
+2026-03-04 15:07:31 [INFO] - Creating service principal...
+2026-03-04 15:07:32 [INFO] - Created service principal
+2026-03-04 15:07:32 [INFO] - Creating client secret...
+2026-03-04 15:07:32 [INFO] - Granting admin consent for application permissions...
+2026-03-04 15:07:33 [INFO] - Granted consent for DeviceManagementApps.ReadWrite.All
+2026-03-04 15:07:33 [INFO] - Granted consent for DeviceManagementConfiguration.ReadWrite.All
+2026-03-04 15:07:33 [INFO] - Granted consent for DeviceManagementManagedDevices.ReadWrite.All
+2026-03-04 15:07:33 [INFO] - Granted consent for Directory.Read.All
+2026-03-04 15:07:33 [INFO] - Granted consent for Group.ReadWrite.All
+2026-03-04 15:07:34 [INFO] - Granted consent for DeviceManagementRBAC.Read.All
+2026-03-04 15:07:34 [INFO] - Granted consent for DeviceManagementRBAC.ReadWrite.All
+2026-03-04 15:07:34 [INFO] - Granted consent for Application.ReadWrite.All
+2026-03-04 15:07:34 [INFO] - Saved credentials to config file
+2026-03-04 15:07:41 [INFO] - Initializing Graph connection...
+2026-03-04 15:07:41 [INFO] - Using existing Graph connection
+2026-03-04 15:07:43 [INFO] - Connected to Intune Graph API successfully
+2026-03-04 15:07:43 [INFO] - Started transcript logging to: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\Logs\MainScript_20260304_150743.txt
+2026-03-04 15:07:43 [INFO] - Loading existing configuration from: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\config.json
+2026-03-04 15:07:43 [INFO] - Configuration loaded successfully
+2026-03-04 15:07:46 [INFO] - User selected assignment: AllDevices=False, AllUsers=False, NoAssignment=True
+2026-03-04 15:07:46 [INFO] - Created C:\IntunePackages directory.
+2026-03-04 15:07:47 [INFO] - Downloaded IntuneWinAppUtil.exe successfully.
+2026-03-04 15:07:47 [INFO] - Starting process for Adobe Acrobat Reader (64-bit)
+2026-03-04 15:07:47 [INFO] - Created Winget install script for Adobe Acrobat Reader (64-bit).
+2026-03-04 15:07:47 [INFO] - Created Winget uninstall script for Adobe Acrobat Reader (64-bit).
+2026-03-04 15:07:48 [INFO] - Packaged Adobe Acrobat Reader (64-bit) into C:\IntunePackages\Adobe_Acrobat_Reader_(64-bit).intunewin successfully.
+2026-03-04 15:07:48 [INFO] - Created enhanced detection script for Adobe Acrobat Reader (64-bit).
+2026-03-04 15:07:48 [INFO] - Found icon file for Adobe Acrobat Reader (64-bit) at: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\Icons\Adobe.Acrobat.Reader.64-bit.png
+2026-03-04 15:07:48 [INFO] - Successfully converted icon to Base64
+2026-03-04 15:07:48 [INFO] - Uploading Adobe Acrobat Reader (64-bit) to Intune...
+2026-03-04 15:07:48 [INFO] - Starting cleanup operations...
+2026-03-04 15:07:48 [INFO] - Removed temporary file: C:\IntunePackages\Adobe_Acrobat_Reader_(64-bit)_DetectionScript.ps1
+2026-03-04 15:07:48 [INFO] - Removed temporary file: C:\IntunePackages\Adobe_Acrobat_Reader_(64-bit)_uninstall.ps1
+2026-03-04 15:07:48 [INFO] - Removed temporary file: C:\IntunePackages\Adobe_Acrobat_Reader_(64-bit).intunewin
+2026-03-04 15:07:48 [INFO] - Removed temporary file: C:\IntunePackages\Adobe_Acrobat_Reader_(64-bit).ps1
+2026-03-04 15:07:48 [INFO] - Removed temporary file: C:\IntunePackages\IntuneWinAppUtil.exe
+2026-03-04 15:07:48 [INFO] - Removed temporary directory: C:\IntunePackages
+2026-03-04 15:07:48 [INFO] - Script execution completed. Intune Graph session will close automatically.
+2026-03-04 15:07:52 [INFO] - Stopped transcript logging
+2026-03-04 15:07:56 [INFO] - Initializing Graph connection...
+2026-03-04 15:07:56 [INFO] - Using existing Graph connection
+2026-03-04 15:07:57 [INFO] - Connected to Intune Graph API successfully
+2026-03-04 15:07:57 [INFO] - Started transcript logging to: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\Logs\MainScript_20260304_150757.txt
+2026-03-04 15:07:57 [INFO] - Loading existing configuration from: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\config.json
+2026-03-04 15:07:57 [INFO] - Configuration loaded successfully
+2026-03-04 15:07:59 [INFO] - User selected assignment: AllDevices=False, AllUsers=False, NoAssignment=True
+2026-03-04 15:07:59 [INFO] - Created C:\IntunePackages directory.
+2026-03-04 15:07:59 [INFO] - Downloaded IntuneWinAppUtil.exe successfully.
+2026-03-04 15:07:59 [INFO] - Starting process for Adobe Acrobat Reader (64-bit)
+2026-03-04 15:07:59 [INFO] - Created Winget install script for Adobe Acrobat Reader (64-bit).
+2026-03-04 15:07:59 [INFO] - Created Winget uninstall script for Adobe Acrobat Reader (64-bit).
+2026-03-04 15:08:00 [INFO] - Packaged Adobe Acrobat Reader (64-bit) into C:\IntunePackages\Adobe_Acrobat_Reader_(64-bit).intunewin successfully.
+2026-03-04 15:08:00 [INFO] - Created enhanced detection script for Adobe Acrobat Reader (64-bit).
+2026-03-04 15:08:00 [INFO] - Found icon file for Adobe Acrobat Reader (64-bit) at: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\Icons\Adobe.Acrobat.Reader.64-bit.png
+2026-03-04 15:08:01 [INFO] - Successfully converted icon to Base64
+2026-03-04 15:08:01 [INFO] - Uploading Adobe Acrobat Reader (64-bit) to Intune...
+2026-03-04 15:08:24 [INFO] - Successfully uploaded Adobe Acrobat Reader (64-bit) to Intune
+2026-03-04 15:08:24 [INFO] - App ID: 7b131449-d00b-4211-b16f-e521a71a9e09
+2026-03-04 15:08:24 [INFO] - Display Name: Adobe Acrobat Reader (64-bit)
+2026-03-04 15:08:24 [INFO] - Description: Adobe Acrobat Reader software is the free, trusted global standard for viewing, printing, signing, sharing, and annotating PDFs. It's the only PDF viewer that can open and interact with all types of PDF content ΓÇô including forms and multimedia.
+2026-03-04 15:08:24 [INFO] - Publisher: Adobe
+2026-03-04 15:08:24 [INFO] - No assignment selected for Adobe Acrobat Reader (64-bit)
+2026-03-04 15:08:24 [INFO] - Starting cleanup operations...
+2026-03-04 15:08:24 [INFO] - Removed temporary file: C:\IntunePackages\Adobe_Acrobat_Reader_(64-bit)_DetectionScript.ps1
+2026-03-04 15:08:24 [INFO] - Removed temporary file: C:\IntunePackages\Adobe_Acrobat_Reader_(64-bit)_uninstall.ps1
+2026-03-04 15:08:24 [INFO] - Removed temporary file: C:\IntunePackages\Adobe_Acrobat_Reader_(64-bit).intunewin
+2026-03-04 15:08:24 [INFO] - Removed temporary file: C:\IntunePackages\Adobe_Acrobat_Reader_(64-bit).ps1
+2026-03-04 15:08:24 [INFO] - Removed temporary file: C:\IntunePackages\IntuneWinAppUtil.exe
+2026-03-04 15:08:25 [INFO] - Removed temporary directory: C:\IntunePackages
+2026-03-04 15:08:25 [INFO] - Script execution completed. Intune Graph session will close automatically.
+2026-03-04 15:08:28 [INFO] - Stopped transcript logging
+2026-03-04 16:23:39 [INFO] - Starting Azure AD app removal process...
+2026-03-04 16:23:40 [INFO] - Found App ID: 94fb7770-cc64-4788-8c33-5b537d261d64
+2026-03-04 16:23:40 [INFO] - Connecting to Microsoft Graph...
+2026-03-04 16:23:41 [INFO] - Successfully connected to Microsoft Graph
+2026-03-04 16:23:41 [INFO] - Attempting to remove Azure AD application...
+2026-03-04 16:23:41 [INFO] - Successfully removed Azure AD application
+2026-03-04 16:23:41 [INFO] - Starting credential removal process...
+2026-03-04 16:23:41 [INFO] - Current credentials exist: True
+2026-03-04 16:23:41 [INFO] - Clearing credentials from memory...
+2026-03-04 16:23:41 [INFO] - Credentials cleared from memory
+2026-03-04 16:23:41 [INFO] - Saving updated config to: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\config.json
+2026-03-04 16:23:41 [INFO] - Config file updated successfully
+2026-03-04 16:23:41 [INFO] - Credential removal completed successfully
+2026-03-04 16:23:41 [INFO] - Starting Graph credential removal process...
+2026-03-19 10:27:40 [INFO] - Starting initialization of required modules...
+2026-03-19 10:27:44 [INFO] - Processing module: Microsoft.Graph.Applications
+2026-03-19 10:27:44 [INFO] - Importing module: Microsoft.Graph.Applications
+2026-03-19 10:27:48 [INFO] - Successfully imported Microsoft.Graph.Applications
+2026-03-19 10:27:48 [INFO] - Processing module: Microsoft.Graph.Identity.DirectoryManagement
+2026-03-19 10:27:49 [INFO] - Importing module: Microsoft.Graph.Identity.DirectoryManagement
+2026-03-19 10:27:52 [INFO] - Successfully imported Microsoft.Graph.Identity.DirectoryManagement
+2026-03-19 10:27:52 [INFO] - Processing module: IntuneWin32App
+2026-03-19 10:27:52 [INFO] - Importing module: IntuneWin32App
+2026-03-19 10:27:59 [INFO] - Successfully imported IntuneWin32App
+2026-03-19 10:27:59 [INFO] - Processing module: Microsoft.WinGet.Client
+2026-03-19 10:27:59 [INFO] - Importing module: Microsoft.WinGet.Client
+2026-03-19 10:28:00 [INFO] - Successfully imported Microsoft.WinGet.Client
+2026-03-19 10:28:00 [INFO] - All required modules initialized successfully
+2026-03-19 10:28:01 [INFO] - Checking current winget version...
+2026-03-19 10:28:01 [INFO] - Latest winget version available: 1.28.190
+2026-03-19 10:28:01 [INFO] - winget is up to date (version 1.28.220).
+2026-03-19 10:28:01 [INFO] - Loaded apps from config file successfully.
+2026-03-19 10:28:24 [INFO] - Starting app registration process...
+2026-03-19 10:28:24 [INFO] - Connecting to Microsoft Graph...
+2026-03-19 10:28:27 [INFO] - Creating Azure AD Application: Winget-Intune-App-Deployment
+2026-03-19 10:28:29 [INFO] - Created Azure AD Application
+2026-03-19 10:28:29 [INFO] - Creating service principal...
+2026-03-19 10:28:29 [INFO] - Created service principal
+2026-03-19 10:28:29 [INFO] - Creating client secret...
+2026-03-19 10:28:29 [INFO] - Granting admin consent for application permissions...
+2026-03-19 10:28:30 [INFO] - Granted consent for DeviceManagementApps.ReadWrite.All
+2026-03-19 10:28:30 [INFO] - Granted consent for DeviceManagementConfiguration.ReadWrite.All
+2026-03-19 10:28:30 [INFO] - Granted consent for DeviceManagementManagedDevices.ReadWrite.All
+2026-03-19 10:28:30 [INFO] - Granted consent for Directory.Read.All
+2026-03-19 10:28:30 [INFO] - Granted consent for Group.ReadWrite.All
+2026-03-19 10:28:30 [INFO] - Granted consent for DeviceManagementRBAC.Read.All
+2026-03-19 10:28:31 [INFO] - Granted consent for DeviceManagementRBAC.ReadWrite.All
+2026-03-19 10:28:31 [INFO] - Granted consent for Application.ReadWrite.All
+2026-03-19 10:28:31 [INFO] - Saved credentials to config file
+2026-03-19 10:28:40 [INFO] - Starting Azure AD app removal process...
+2026-03-19 10:28:40 [INFO] - Found App ID: 7bd4a3a3-27cb-4869-bdb1-43852d49d2f6
+2026-03-19 10:28:40 [INFO] - Connecting to Microsoft Graph...
+2026-03-19 10:28:40 [INFO] - Successfully connected to Microsoft Graph
+2026-03-19 10:28:40 [INFO] - Attempting to remove Azure AD application...
+2026-03-19 10:28:40 [INFO] - Successfully removed Azure AD application
+2026-03-19 10:28:40 [INFO] - Starting credential removal process...
+2026-03-19 10:28:40 [INFO] - Current credentials exist: True
+2026-03-19 10:28:40 [INFO] - Clearing credentials from memory...
+2026-03-19 10:28:40 [INFO] - Credentials cleared from memory
+2026-03-19 10:28:40 [INFO] - Saving updated config to: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\config.json
+2026-03-19 10:28:40 [INFO] - Config file updated successfully
+2026-03-19 10:28:40 [INFO] - Credential removal completed successfully
+2026-03-19 10:28:40 [INFO] - Starting Graph credential removal process...
+2026-03-19 10:28:45 [INFO] - Starting initialization of required modules...
+2026-03-19 10:28:45 [INFO] - Processing module: Microsoft.Graph.Applications
+2026-03-19 10:28:45 [INFO] - Module Microsoft.Graph.Applications is already loaded (Version: 2.34.0)
+2026-03-19 10:28:45 [INFO] - Processing module: Microsoft.Graph.Identity.DirectoryManagement
+2026-03-19 10:28:45 [INFO] - Module Microsoft.Graph.Identity.DirectoryManagement is already loaded (Version: 2.34.0)
+2026-03-19 10:28:45 [INFO] - Processing module: IntuneWin32App
+2026-03-19 10:28:45 [INFO] - Module IntuneWin32App is already loaded (Version: 1.4.4)
+2026-03-19 10:28:45 [INFO] - Processing module: Microsoft.WinGet.Client
+2026-03-19 10:28:45 [INFO] - Module Microsoft.WinGet.Client is already loaded (Version: 1.11.460)
+2026-03-19 10:28:45 [INFO] - All required modules initialized successfully
+2026-03-19 10:28:45 [INFO] - Checking current winget version...
+2026-03-19 10:28:46 [INFO] - Latest winget version available: 1.28.190
+2026-03-19 10:28:46 [INFO] - winget is up to date (version 1.28.220).
+2026-03-19 10:28:46 [INFO] - Loaded apps from config file successfully.
+2026-03-19 10:28:52 [INFO] - Starting Azure AD app removal process...
+2026-03-19 10:28:52 [INFO] - No App ID found in config, skipping app removal
+2026-03-19 10:28:52 [INFO] - Azure AD App removed successfully
+2026-03-19 10:28:52 [INFO] - Starting credential removal process...
+2026-03-19 10:28:52 [INFO] - Current credentials exist: False
+2026-03-19 10:28:52 [INFO] - Clearing credentials from memory...
+2026-03-19 10:28:52 [INFO] - Credentials cleared from memory
+2026-03-19 10:28:52 [INFO] - Saving updated config to: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\config.json
+2026-03-19 10:28:52 [INFO] - Config file updated successfully
+2026-03-19 10:28:52 [INFO] - Credential removal completed successfully
+2026-03-19 10:28:52 [INFO] - Stored credentials removed successfully
+2026-03-19 10:28:52 [INFO] - Configuration reset with empty credentials
+2026-03-19 10:28:52 [INFO] - Loaded apps from config file successfully.
+2026-03-19 10:28:54 [INFO] - Starting app registration process...
+2026-03-19 10:28:54 [INFO] - Connecting to Microsoft Graph...
+2026-03-19 10:29:22 [INFO] - Creating Azure AD Application: Winget-Intune-App-Deployment
+2026-03-19 10:29:24 [INFO] - Created Azure AD Application
+2026-03-19 10:29:24 [INFO] - Creating service principal...
+2026-03-19 10:29:24 [INFO] - Created service principal
+2026-03-19 10:29:24 [INFO] - Creating client secret...
+2026-03-19 10:29:25 [INFO] - Granting admin consent for application permissions...
+2026-03-19 10:29:25 [INFO] - Granted consent for DeviceManagementApps.ReadWrite.All
+2026-03-19 10:29:25 [INFO] - Granted consent for DeviceManagementConfiguration.ReadWrite.All
+2026-03-19 10:29:26 [INFO] - Granted consent for DeviceManagementManagedDevices.ReadWrite.All
+2026-03-19 10:29:26 [INFO] - Granted consent for Directory.Read.All
+2026-03-19 10:29:26 [INFO] - Granted consent for Group.ReadWrite.All
+2026-03-19 10:29:26 [INFO] - Granted consent for DeviceManagementRBAC.Read.All
+2026-03-19 10:29:26 [INFO] - Granted consent for DeviceManagementRBAC.ReadWrite.All
+2026-03-19 10:29:27 [INFO] - Granted consent for Application.ReadWrite.All
+2026-03-19 10:29:27 [INFO] - Saved credentials to config file
+2026-03-19 10:29:30 [INFO] - Initializing Graph connection...
+2026-03-19 10:29:30 [INFO] - Using existing Graph connection
+2026-03-19 10:29:32 [INFO] - Connected to Intune Graph API successfully
+2026-03-19 10:29:32 [INFO] - Started transcript logging to: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\Logs\MainScript_20260319_102932.txt
+2026-03-19 10:29:32 [INFO] - Loading existing configuration from: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\config.json
+2026-03-19 10:29:32 [INFO] - Configuration loaded successfully
+2026-03-19 10:29:37 [INFO] - User selected assignment: AllDevices=False, AllUsers=False, NoAssignment=True
+2026-03-19 10:29:37 [INFO] - Created C:\IntunePackages directory.
+2026-03-19 10:29:37 [INFO] - Downloaded IntuneWinAppUtil.exe successfully.
+2026-03-19 10:29:37 [INFO] - Starting process for Adobe Acrobat Reader (64-bit)
+2026-03-19 10:29:37 [INFO] - Created Winget install script for Adobe Acrobat Reader (64-bit).
+2026-03-19 10:29:37 [INFO] - Created Winget uninstall script for Adobe Acrobat Reader (64-bit).
+2026-03-19 10:29:38 [INFO] - Packaged Adobe Acrobat Reader (64-bit) into C:\IntunePackages\Adobe_Acrobat_Reader_(64-bit).intunewin successfully.
+2026-03-19 10:29:38 [INFO] - Created enhanced detection script for Adobe Acrobat Reader (64-bit).
+2026-03-19 10:29:39 [INFO] - Found icon file for Adobe Acrobat Reader (64-bit) at: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\Icons\Adobe.Acrobat.Reader.64-bit.png
+2026-03-19 10:29:39 [INFO] - Successfully converted icon to Base64
+2026-03-19 10:29:39 [INFO] - Uploading Adobe Acrobat Reader (64-bit) to Intune...
+2026-03-19 10:29:39 [INFO] - Starting cleanup operations...
+2026-03-19 10:29:39 [INFO] - Removed temporary file: C:\IntunePackages\Adobe_Acrobat_Reader_(64-bit)_DetectionScript.ps1
+2026-03-19 10:29:39 [INFO] - Removed temporary file: C:\IntunePackages\Adobe_Acrobat_Reader_(64-bit)_uninstall.ps1
+2026-03-19 10:29:39 [INFO] - Removed temporary file: C:\IntunePackages\Adobe_Acrobat_Reader_(64-bit).intunewin
+2026-03-19 10:29:39 [INFO] - Removed temporary file: C:\IntunePackages\Adobe_Acrobat_Reader_(64-bit).ps1
+2026-03-19 10:29:39 [INFO] - Removed temporary file: C:\IntunePackages\IntuneWinAppUtil.exe
+2026-03-19 10:29:39 [INFO] - Removed temporary directory: C:\IntunePackages
+2026-03-19 10:29:39 [INFO] - Script execution completed. Intune Graph session will close automatically.
+2026-03-19 10:29:43 [INFO] - Stopped transcript logging
+2026-03-19 10:29:48 [INFO] - Initializing Graph connection...
+2026-03-19 10:29:48 [INFO] - Using existing Graph connection
+2026-03-19 10:29:49 [INFO] - Connected to Intune Graph API successfully
+2026-03-19 10:29:49 [INFO] - Started transcript logging to: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\Logs\MainScript_20260319_102949.txt
+2026-03-19 10:29:49 [INFO] - Loading existing configuration from: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\config.json
+2026-03-19 10:29:49 [INFO] - Configuration loaded successfully
+2026-03-19 10:29:51 [INFO] - User selected assignment: AllDevices=False, AllUsers=False, NoAssignment=True
+2026-03-19 10:29:51 [INFO] - Created C:\IntunePackages directory.
+2026-03-19 10:29:52 [INFO] - Downloaded IntuneWinAppUtil.exe successfully.
+2026-03-19 10:29:52 [INFO] - Starting process for Adobe Acrobat Reader (64-bit)
+2026-03-19 10:29:52 [INFO] - Created Winget install script for Adobe Acrobat Reader (64-bit).
+2026-03-19 10:29:52 [INFO] - Created Winget uninstall script for Adobe Acrobat Reader (64-bit).
+2026-03-19 10:29:53 [INFO] - Packaged Adobe Acrobat Reader (64-bit) into C:\IntunePackages\Adobe_Acrobat_Reader_(64-bit).intunewin successfully.
+2026-03-19 10:29:53 [INFO] - Created enhanced detection script for Adobe Acrobat Reader (64-bit).
+2026-03-19 10:29:53 [INFO] - Found icon file for Adobe Acrobat Reader (64-bit) at: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\Icons\Adobe.Acrobat.Reader.64-bit.png
+2026-03-19 10:29:53 [INFO] - Successfully converted icon to Base64
+2026-03-19 10:29:53 [INFO] - Uploading Adobe Acrobat Reader (64-bit) to Intune...
+2026-03-19 10:30:17 [INFO] - Successfully uploaded Adobe Acrobat Reader (64-bit) to Intune
+2026-03-19 10:30:17 [INFO] - App ID: 7675707e-1f51-4b51-bd88-e663e344b764
+2026-03-19 10:30:17 [INFO] - Display Name: Adobe Acrobat Reader (64-bit)
+2026-03-19 10:30:17 [INFO] - Description: Adobe Acrobat Reader software is the free, trusted global standard for viewing, printing, signing, sharing, and annotating PDFs. It's the only PDF viewer that can open and interact with all types of PDF content ΓÇô including forms and multimedia.
+2026-03-19 10:30:17 [INFO] - Publisher: Adobe
+2026-03-19 10:30:17 [INFO] - No assignment selected for Adobe Acrobat Reader (64-bit)
+2026-03-19 10:30:17 [INFO] - Starting cleanup operations...
+2026-03-19 10:30:17 [INFO] - Removed temporary file: C:\IntunePackages\Adobe_Acrobat_Reader_(64-bit)_DetectionScript.ps1
+2026-03-19 10:30:17 [INFO] - Removed temporary file: C:\IntunePackages\Adobe_Acrobat_Reader_(64-bit)_uninstall.ps1
+2026-03-19 10:30:17 [INFO] - Removed temporary file: C:\IntunePackages\Adobe_Acrobat_Reader_(64-bit).intunewin
+2026-03-19 10:30:17 [INFO] - Removed temporary file: C:\IntunePackages\Adobe_Acrobat_Reader_(64-bit).ps1
+2026-03-19 10:30:18 [INFO] - Removed temporary file: C:\IntunePackages\IntuneWinAppUtil.exe
+2026-03-19 10:30:18 [INFO] - Removed temporary directory: C:\IntunePackages
+2026-03-19 10:30:18 [INFO] - Script execution completed. Intune Graph session will close automatically.
+2026-03-19 10:30:20 [INFO] - Stopped transcript logging
+2026-03-19 10:30:35 [INFO] - Starting Azure AD app removal process...
+2026-03-19 10:30:35 [INFO] - Found App ID: 0168da31-0fb5-436f-aed9-4d34f7e52610
+2026-03-19 10:30:35 [INFO] - Connecting to Microsoft Graph...
+2026-03-19 10:30:35 [INFO] - Successfully connected to Microsoft Graph
+2026-03-19 10:30:35 [INFO] - Attempting to remove Azure AD application...
+2026-03-19 10:30:35 [INFO] - Successfully removed Azure AD application
+2026-03-19 10:30:35 [INFO] - Starting credential removal process...
+2026-03-19 10:30:35 [INFO] - Current credentials exist: True
+2026-03-19 10:30:35 [INFO] - Clearing credentials from memory...
+2026-03-19 10:30:35 [INFO] - Credentials cleared from memory
+2026-03-19 10:30:35 [INFO] - Saving updated config to: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\config.json
+2026-03-19 10:30:35 [INFO] - Config file updated successfully
+2026-03-19 10:30:35 [INFO] - Credential removal completed successfully
+2026-03-19 10:30:35 [INFO] - Starting Graph credential removal process...
+2026-04-01 11:19:06 [INFO] - Starting initialization of required modules...
+2026-04-01 11:19:12 [INFO] - Processing module: Microsoft.Graph.Applications
+2026-04-01 11:19:12 [INFO] - Importing module: Microsoft.Graph.Applications
+2026-04-01 11:19:17 [INFO] - Successfully imported Microsoft.Graph.Applications
+2026-04-01 11:19:17 [INFO] - Processing module: Microsoft.Graph.Identity.DirectoryManagement
+2026-04-01 11:19:17 [INFO] - Importing module: Microsoft.Graph.Identity.DirectoryManagement
+2026-04-01 11:19:21 [INFO] - Successfully imported Microsoft.Graph.Identity.DirectoryManagement
+2026-04-01 11:19:21 [INFO] - Processing module: IntuneWin32App
+2026-04-01 11:19:21 [INFO] - Importing module: IntuneWin32App
+2026-04-01 11:19:28 [INFO] - Successfully imported IntuneWin32App
+2026-04-01 11:19:28 [INFO] - Processing module: Microsoft.WinGet.Client
+2026-04-01 11:19:28 [INFO] - Importing module: Microsoft.WinGet.Client
+2026-04-01 11:19:29 [INFO] - Successfully imported Microsoft.WinGet.Client
+2026-04-01 11:19:29 [INFO] - All required modules initialized successfully
+2026-04-01 11:19:29 [INFO] - Checking current winget version...
+2026-04-01 11:19:30 [INFO] - Latest winget version available: 1.28.190
+2026-04-01 11:19:30 [INFO] - winget is up to date (version 1.28.220).
+2026-04-01 11:19:30 [INFO] - Loaded apps from config file successfully.
+2026-04-01 11:23:27 [INFO] - Loaded apps from config file successfully.
+2026-04-01 11:23:27 [INFO] - Added new app from Winget: TeamViewer
+2026-04-01 11:23:39 [INFO] - Loaded apps from config file successfully.
+2026-04-01 11:23:39 [INFO] - Added new app from Winget: TeamViewer Host
+2026-04-01 11:30:51 [INFO] - Starting app registration process...
+2026-04-01 11:30:51 [INFO] - Connecting to Microsoft Graph...
+2026-04-01 11:31:36 [INFO] - Creating Azure AD Application: Winget-Intune-App-Deployment
+2026-04-01 11:31:38 [INFO] - Created Azure AD Application
+2026-04-01 11:31:38 [INFO] - Creating service principal...
+2026-04-01 11:31:38 [INFO] - Created service principal
+2026-04-01 11:31:38 [INFO] - Creating client secret...
+2026-04-01 11:31:39 [INFO] - Granting admin consent for application permissions...
+2026-04-01 11:31:39 [INFO] - Granted consent for DeviceManagementApps.ReadWrite.All
+2026-04-01 11:31:39 [INFO] - Granted consent for DeviceManagementConfiguration.ReadWrite.All
+2026-04-01 11:31:39 [INFO] - Granted consent for DeviceManagementManagedDevices.ReadWrite.All
+2026-04-01 11:31:40 [INFO] - Granted consent for Directory.Read.All
+2026-04-01 11:31:40 [INFO] - Granted consent for Group.ReadWrite.All
+2026-04-01 11:31:40 [INFO] - Granted consent for DeviceManagementRBAC.Read.All
+2026-04-01 11:31:40 [INFO] - Granted consent for DeviceManagementRBAC.ReadWrite.All
+2026-04-01 11:31:41 [INFO] - Granted consent for Application.ReadWrite.All
+2026-04-01 11:31:41 [INFO] - Saved credentials to config file
+2026-04-01 11:31:46 [INFO] - Initializing Graph connection...
+2026-04-01 11:31:46 [INFO] - Using existing Graph connection
+2026-04-01 11:31:47 [INFO] - Connected to Intune Graph API successfully
+2026-04-01 11:31:48 [INFO] - Started transcript logging to: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\Logs\MainScript_20260401_113147.txt
+2026-04-01 11:31:48 [INFO] - Loading existing configuration from: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\config.json
+2026-04-01 11:31:48 [INFO] - Configuration loaded successfully
+2026-04-01 11:31:55 [INFO] - User selected assignment: AllDevices=False, AllUsers=False, NoAssignment=True
+2026-04-01 11:31:55 [INFO] - Created C:\IntunePackages directory.
+2026-04-01 11:31:55 [INFO] - Downloaded IntuneWinAppUtil.exe successfully.
+2026-04-01 11:31:55 [INFO] - Starting process for TeamViewer
+2026-04-01 11:31:55 [INFO] - Created Winget install script for TeamViewer.
+2026-04-01 11:31:55 [INFO] - Created Winget uninstall script for TeamViewer.
+2026-04-01 11:31:56 [INFO] - Packaged TeamViewer into C:\IntunePackages\TeamViewer.intunewin successfully.
+2026-04-01 11:31:56 [INFO] - Created enhanced detection script for TeamViewer.
+2026-04-01 11:31:57 [INFO] - Downloaded icon from https://api.winstall.app/icons/TeamViewer.TeamViewer.png
+2026-04-01 11:31:57 [INFO] - Found icon file for TeamViewer at: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\Icons\TeamViewer.TeamViewer.png
+2026-04-01 11:31:57 [INFO] - Successfully converted icon to Base64
+2026-04-01 11:31:57 [INFO] - Uploading TeamViewer to Intune...
+2026-04-01 11:31:57 [INFO] - Starting cleanup operations...
+2026-04-01 11:31:57 [INFO] - Removed temporary file: C:\IntunePackages\IntuneWinAppUtil.exe
+2026-04-01 11:31:57 [INFO] - Removed temporary file: C:\IntunePackages\TeamViewer_DetectionScript.ps1
+2026-04-01 11:31:57 [INFO] - Removed temporary file: C:\IntunePackages\TeamViewer_uninstall.ps1
+2026-04-01 11:31:57 [INFO] - Removed temporary file: C:\IntunePackages\TeamViewer.intunewin
+2026-04-01 11:31:57 [INFO] - Removed temporary file: C:\IntunePackages\TeamViewer.ps1
+2026-04-01 11:31:57 [INFO] - Removed temporary directory: C:\IntunePackages
+2026-04-01 11:31:57 [INFO] - Script execution completed. Intune Graph session will close automatically.
+2026-04-01 11:32:00 [INFO] - Stopped transcript logging
+2026-04-01 11:32:07 [INFO] - Initializing Graph connection...
+2026-04-01 11:32:07 [INFO] - Using existing Graph connection
+2026-04-01 11:32:08 [INFO] - Connected to Intune Graph API successfully
+2026-04-01 11:32:08 [INFO] - Started transcript logging to: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\Logs\MainScript_20260401_113208.txt
+2026-04-01 11:32:08 [INFO] - Loading existing configuration from: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\config.json
+2026-04-01 11:32:08 [INFO] - Configuration loaded successfully
+2026-04-01 11:32:10 [INFO] - User selected assignment: AllDevices=False, AllUsers=False, NoAssignment=True
+2026-04-01 11:32:10 [INFO] - Created C:\IntunePackages directory.
+2026-04-01 11:32:10 [INFO] - Downloaded IntuneWinAppUtil.exe successfully.
+2026-04-01 11:32:10 [INFO] - Starting process for TeamViewer
+2026-04-01 11:32:10 [INFO] - Created Winget install script for TeamViewer.
+2026-04-01 11:32:10 [INFO] - Created Winget uninstall script for TeamViewer.
+2026-04-01 11:32:11 [INFO] - Packaged TeamViewer into C:\IntunePackages\TeamViewer.intunewin successfully.
+2026-04-01 11:32:11 [INFO] - Created enhanced detection script for TeamViewer.
+2026-04-01 11:32:11 [INFO] - Found icon file for TeamViewer at: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\Icons\TeamViewer.TeamViewer.png
+2026-04-01 11:32:11 [INFO] - Successfully converted icon to Base64
+2026-04-01 11:32:11 [INFO] - Uploading TeamViewer to Intune...
+2026-04-01 11:32:36 [INFO] - Successfully uploaded TeamViewer to Intune
+2026-04-01 11:32:36 [INFO] - App ID: efbc44d2-7f15-423f-a626-c7014568e1dc
+2026-04-01 11:32:36 [INFO] - Display Name: TeamViewer
+2026-04-01 11:32:36 [INFO] - Description: TeamViewer is a comprehensive, remote access, remote control and remote support solution that works with almost every desktop and mobile platform, including Windows, macOS, Android, and iOS. TeamViewer lets you remote in to computers or mobile devices located anywhere in the world and use them as though you were there.
+2026-04-01 11:32:36 [INFO] - Publisher: TeamViewer
+2026-04-01 11:32:36 [INFO] - No assignment selected for TeamViewer
+2026-04-01 11:32:36 [INFO] - Starting process for TeamViewer Host
+2026-04-01 11:32:36 [INFO] - Created Winget install script for TeamViewer Host.
+2026-04-01 11:32:36 [INFO] - Created Winget uninstall script for TeamViewer Host.
+2026-04-01 11:32:37 [INFO] - Packaged TeamViewer Host into C:\IntunePackages\TeamViewer_Host.intunewin successfully.
+2026-04-01 11:32:37 [INFO] - Created enhanced detection script for TeamViewer Host.
+2026-04-01 11:32:37 [INFO] - Downloaded icon from https://api.winstall.app/icons/TeamViewer.TeamViewer.Host.png
+2026-04-01 11:32:37 [INFO] - Found icon file for TeamViewer Host at: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\Icons\TeamViewer.TeamViewer.Host.png
+2026-04-01 11:32:37 [INFO] - Successfully converted icon to Base64
+2026-04-01 11:32:37 [INFO] - Uploading TeamViewer Host to Intune...
+2026-04-01 11:33:01 [INFO] - Successfully uploaded TeamViewer Host to Intune
+2026-04-01 11:33:01 [INFO] - App ID: 06f4cc11-e1e0-414a-895b-420d28661428
+2026-04-01 11:33:01 [INFO] - Display Name: TeamViewer Host
+2026-04-01 11:33:01 [INFO] - Description: TeamViewer Host is used for 24/7 access to remote computers, which makes it an ideal solution for uses such as remote device monitoring, server maintenance, or connection to a PC, Mac, or Linux device in the office or at home without having to accept the incoming connection on the remote device (unattended access). Install TeamViewer Host on your devices to access them effortlessly.
+2026-04-01 11:33:01 [INFO] - Publisher: TeamViewer
+2026-04-01 11:33:01 [INFO] - No assignment selected for TeamViewer Host
+2026-04-01 11:33:01 [INFO] - Starting cleanup operations...
+2026-04-01 11:33:01 [INFO] - Removed temporary file: C:\IntunePackages\IntuneWinAppUtil.exe
+2026-04-01 11:33:01 [INFO] - Removed temporary file: C:\IntunePackages\TeamViewer_DetectionScript.ps1
+2026-04-01 11:33:01 [INFO] - Removed temporary file: C:\IntunePackages\TeamViewer_Host_DetectionScript.ps1
+2026-04-01 11:33:01 [INFO] - Removed temporary file: C:\IntunePackages\TeamViewer_Host_uninstall.ps1
+2026-04-01 11:33:01 [INFO] - Removed temporary file: C:\IntunePackages\TeamViewer_Host.intunewin
+2026-04-01 11:33:01 [INFO] - Removed temporary file: C:\IntunePackages\TeamViewer_Host.ps1
+2026-04-01 11:33:01 [INFO] - Removed temporary file: C:\IntunePackages\TeamViewer_uninstall.ps1
+2026-04-01 11:33:01 [INFO] - Removed temporary file: C:\IntunePackages\TeamViewer.intunewin
+2026-04-01 11:33:01 [INFO] - Removed temporary file: C:\IntunePackages\TeamViewer.ps1
+2026-04-01 11:33:01 [INFO] - Removed temporary directory: C:\IntunePackages
+2026-04-01 11:33:01 [INFO] - Script execution completed. Intune Graph session will close automatically.
+2026-04-01 11:38:19 [INFO] - Stopped transcript logging
+2026-04-01 11:45:44 [INFO] - Starting Azure AD app removal process...
+2026-04-01 11:45:44 [INFO] - Found App ID: 79a6f3c4-e0b0-4f90-87b1-57fd3262e338
+2026-04-01 11:45:44 [INFO] - Connecting to Microsoft Graph...
+2026-04-01 11:45:44 [INFO] - Successfully connected to Microsoft Graph
+2026-04-01 11:45:44 [INFO] - Attempting to remove Azure AD application...
+2026-04-01 11:45:44 [INFO] - Successfully removed Azure AD application
+2026-04-01 11:45:44 [INFO] - Starting credential removal process...
+2026-04-01 11:45:44 [INFO] - Current credentials exist: True
+2026-04-01 11:45:44 [INFO] - Clearing credentials from memory...
+2026-04-01 11:45:44 [INFO] - Credentials cleared from memory
+2026-04-01 11:45:44 [INFO] - Saving updated config to: C:\Users\coleridge_r\OneDrive - Esprit ICT Groep B.V\Documents\Tools\Winget2Intune-main\Winget2Intune\config.json
+2026-04-01 11:45:44 [INFO] - Config file updated successfully
+2026-04-01 11:45:44 [INFO] - Credential removal completed successfully
+2026-04-01 11:45:44 [INFO] - Starting Graph credential removal process...
