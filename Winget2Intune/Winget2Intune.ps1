@@ -134,7 +134,7 @@ $currentVersion = "2.1.0"
 
 # Get the directory of the current script
 $scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Definition
-$localScriptPath = Join-Path -Path $scriptRoot -ChildPath "Winget_Apps.ps1"
+$localScriptPath = Join-Path -Path $scriptRoot -ChildPath "Winget2Intune.ps1"
 
 # Function to check for updates
 function Check-ForUpdates {
@@ -1426,7 +1426,7 @@ if (-not (Get-Command choco -ErrorAction SilentlyContinue)) {
     exit 1
 }
 
-`$result = & choco list --local-only --exact `$PackageName 2>&1
+`$result = & choco list -e `$PackageName 2>&1
 if (`$result | Select-String -SimpleMatch `$PackageName) {
     Write-Output "`$PackageName detected via Chocolatey"
     exit 0
