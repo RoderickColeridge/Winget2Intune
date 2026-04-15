@@ -1402,15 +1402,19 @@ function Write-Log(`$message) {
 
 Write-Log "Starting Chocolatey uninstall of `$PackageName"
 
-if (Get-Command choco -ErrorAction SilentlyContinue) {
-    choco uninstall `$PackageName -y --no-progress
+# Use full path to choco.exe so this works under SYSTEM (choco not in SYSTEM PATH)
+`$chocoExe = "C:\ProgramData\chocolatey\bin\choco.exe"
+
+if (Test-Path `$chocoExe) {
+    Write-Log "Running: choco uninstall `$PackageName -y --no-progress --remove-dependencies"
+    & `$chocoExe uninstall `$PackageName -y --no-progress --remove-dependencies
     `$exitCode = `$LASTEXITCODE
     Write-Log "choco uninstall exited with code: `$exitCode"
     exit `$exitCode
 }
 else {
-    Write-Log "Chocolatey not found. `$PackageName may not be installed."
-    exit 0
+    Write-Log "Chocolatey not found at `$chocoExe. Cannot uninstall `$PackageName."
+    exit 1
 }
 "@
 }
@@ -1421,20 +1425,28 @@ function Get-ChocoDetectionScript {
 # Detection Script for $($app.DisplayName) (Chocolatey)
 `$PackageName = '$($app.PackageId)'
 
-if (-not (Get-Command choco -ErrorAction SilentlyContinue)) {
-    Write-Output "Chocolatey not installed - `$PackageName not detected"
-    exit 1
-}
-
-`$result = & choco list -e `$PackageName 2>&1
-if (`$result | Select-String -SimpleMatch `$PackageName) {
-    Write-Output "`$PackageName detected via Chocolatey"
+# Method 1: Check Chocolatey lib directory.
+# Chocolatey creates C:\ProgramData\chocolatey\lib\<packageId> on every install.
+# This works reliably as SYSTEM without requiring choco in PATH or any network call.
+`$chocoLibPath = "C:\ProgramData\chocolatey\lib\`$PackageName"
+if (Test-Path `$chocoLibPath) {
+    Write-Output "`$PackageName detected via Chocolatey lib directory"
     exit 0
 }
-else {
-    Write-Output "`$PackageName not found"
-    exit 1
+
+# Method 2: Fallback - use choco.exe directly via its known full path.
+`$chocoExe = "C:\ProgramData\chocolatey\bin\choco.exe"
+if (Test-Path `$chocoExe) {
+    # choco v2.0+: list is local-only by default, --local-only flag was removed
+    `$result = & `$chocoExe list --exact `$PackageName 2>&1
+    if (`$result | Select-String -SimpleMatch `$PackageName) {
+        Write-Output "`$PackageName detected via choco list"
+        exit 0
+    }
 }
+
+Write-Output "`$PackageName not found"
+exit 1
 "@
 }
 
@@ -1609,11 +1621,20 @@ function Download-Winget {
     try {
         Write-Log "Downloading 7zip CLI executable..."
         # Create temp 7zip CLI folder
-        New-Item -ItemType Directory -Path `$7zipFolder -Force
+        New-Item -ItemType Directory -Path `$7zipFolder -Force | Out-Null
         Invoke-WebRequest -UseBasicParsing -Uri https://www.7-zip.org/a/7zr.exe -OutFile "`$7zipFolder\7zr.exe"
-        Invoke-WebRequest -UseBasicParsing -Uri https://www.7-zip.org/a/7z2408-extra.7z -OutFile "`$7zipFolder\7zr-extra.7z"
+        # Determine the current 7-zip extra version from the download page (avoids hardcoded version)
+        `$downloadPage = (Invoke-WebRequest -UseBasicParsing -Uri "https://www.7-zip.org/download.html").Content
+        `$versionMatch = [regex]::Match(`$downloadPage, '7z(\d{4})-extra\.7z')
+        if (-not `$versionMatch.Success) {
+            Write-Log "Could not determine latest 7-zip version from 7-zip.org"
+            exit 1
+        }
+        `$extraUrl = "https://www.7-zip.org/a/7z`$(`$versionMatch.Groups[1].Value)-extra.7z"
+        Write-Log "Downloading 7-zip extra: `$extraUrl"
+        Invoke-WebRequest -UseBasicParsing -Uri `$extraUrl -OutFile "`$7zipFolder\7zr-extra.7z"
         Write-Log "Extracting 7zip CLI executable to `${7zipFolder}..."
-        
+
         # Fixed argument formatting for 7zip extraction
         `$arguments = @(
             "x",
@@ -1630,9 +1651,9 @@ function Download-Winget {
     }
     try {
         # Create Folder for DesktopAppInstaller inside %ProgramData%
-        New-Item -ItemType Directory -Path "`${env:ProgramData}\Microsoft.DesktopAppInstaller" -Force
+        New-Item -ItemType Directory -Path "`${env:ProgramData}\Microsoft.DesktopAppInstaller" -Force | Out-Null
         Write-Log "Extracting WinGet..."
-        
+
         # Fixed argument formatting for WinGet bundle extraction
         `$bundleArguments = @(
             "x",
@@ -1917,7 +1938,16 @@ function Download-Winget {
         Write-Log "Downloading 7zip CLI executable..."
         New-Item -ItemType Directory -Path `$7zipFolder -Force | Out-Null
         Invoke-WebRequest -UseBasicParsing -Uri https://www.7-zip.org/a/7zr.exe -OutFile "`$7zipFolder\7zr.exe"
-        Invoke-WebRequest -UseBasicParsing -Uri https://www.7-zip.org/a/7z2408-extra.7z -OutFile "`$7zipFolder\7zr-extra.7z"
+        # Determine the current 7-zip extra version from the download page (avoids hardcoded version)
+        `$downloadPage = (Invoke-WebRequest -UseBasicParsing -Uri "https://www.7-zip.org/download.html").Content
+        `$versionMatch = [regex]::Match(`$downloadPage, '7z(\d{4})-extra\.7z')
+        if (-not `$versionMatch.Success) {
+            Write-Log "Could not determine latest 7-zip version from 7-zip.org"
+            exit 1
+        }
+        `$extraUrl = "https://www.7-zip.org/a/7z`$(`$versionMatch.Groups[1].Value)-extra.7z"
+        Write-Log "Downloading 7-zip extra: `$extraUrl"
+        Invoke-WebRequest -UseBasicParsing -Uri `$extraUrl -OutFile "`$7zipFolder\7zr-extra.7z"
         Write-Log "Extracting 7zip CLI executable to `${7zipFolder}..."
         `$arguments = @(
             "x",
@@ -2109,18 +2139,26 @@ catch {
                         }
                     }
 
-                    # Add icon if it exists
+                    # Add icon if it exists and is a valid PNG
                     if (Test-Path $iconPath) {
-                        Log-Message "Found icon file for $($app.DisplayName) at: $iconPath"
                         try {
-                            # Convert icon to Base64
                             $iconBytes = [System.IO.File]::ReadAllBytes($iconPath)
-                            $iconBase64 = [System.Convert]::ToBase64String($iconBytes)
-                            $intuneAppParams.Icon = $iconBase64
-                            Log-Message "Successfully converted icon to Base64"
+                            # Intune only accepts PNG. Validate magic bytes: 89 50 4E 47 (0x89PNG)
+                            $isPng = ($iconBytes.Length -ge 4 -and
+                                      $iconBytes[0] -eq 0x89 -and
+                                      $iconBytes[1] -eq 0x50 -and
+                                      $iconBytes[2] -eq 0x4E -and
+                                      $iconBytes[3] -eq 0x47)
+                            if ($isPng) {
+                                $intuneAppParams.Icon = [System.Convert]::ToBase64String($iconBytes)
+                                Log-Message "Found valid PNG icon for $($app.DisplayName), attached."
+                            } else {
+                                Log-Message "Icon for $($app.DisplayName) is not a valid PNG (format not accepted by Intune), skipping icon." "WARNING"
+                                Remove-Item $iconPath -Force -ErrorAction SilentlyContinue
+                            }
                         }
                         catch {
-                            Log-Message "Failed to convert icon to Base64: $($_.Exception.Message)" "WARNING"
+                            Log-Message "Failed to read icon: $($_.Exception.Message)" "WARNING"
                         }
                     } else {
                         Log-Message "No icon file found for $($app.DisplayName), proceeding without icon"
