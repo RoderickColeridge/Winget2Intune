@@ -121,6 +121,12 @@
 # Auto-update only replaces the script when GitHub has a newer version; added -SkipUpdate switch
 # Date: 16-10-2026
 #########################################
+# Version 2.1.2
+# Fixed "Failed to create instance -2147023174" in the Winget search:
+# winget is now updated before Microsoft.WinGet.Client is loaded, and the search
+# falls back to winget.exe when the WinGet COM server is unavailable
+# Date: 16-10-2026
+#########################################
 
 param (
     # Skip the GitHub auto-update check (e.g. when running a locally modified copy)
@@ -142,7 +148,7 @@ $repoUrl = "https://raw.githubusercontent.com/RoderickColeridge/Winget2Intune/re
 $versionFileUrl = "https://raw.githubusercontent.com/RoderickColeridge/Winget2Intune/refs/heads/main/Winget2Intune/version.txt"
 
 # Current version of the script
-$currentVersion = "2.1.1"
+$currentVersion = "2.1.2"
 
 # Get the directory of the current script
 $scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Definition
@@ -2274,6 +2280,54 @@ catch {
     }
 }
 
+# Search the winget source with winget.exe, used when Find-WinGetPackage cannot reach the WinGet COM server
+function Find-WingetPackageCli {
+    param (
+        [string]$Query
+    )
+    $previousEncoding = [Console]::OutputEncoding
+    try {
+        [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+        $lines = @(& winget search --query $Query --source winget --accept-source-agreements --disable-interactivity 2>$null)
+    }
+    finally {
+        [Console]::OutputEncoding = $previousEncoding
+    }
+
+    # The column header is the line directly above the dashed separator line
+    $separatorIndex = -1
+    for ($i = 0; $i -lt $lines.Count; $i++) {
+        if ($lines[$i] -match '^-{10,}\s*$') {
+            $separatorIndex = $i
+            break
+        }
+    }
+    if ($separatorIndex -lt 1) {
+        return @()
+    }
+
+    # Strip progress output that winget writes on the same line before the header
+    $header = ($lines[$separatorIndex - 1] -split "`r")[-1]
+    # Column start positions (header names are localized, so only their positions are used): Name, Id, Version, ...
+    $columnStarts = @([regex]::Matches($header, '(?<=^|\s)\S') | ForEach-Object { $_.Index })
+    if ($columnStarts.Count -lt 3) {
+        return @()
+    }
+
+    $results = @()
+    foreach ($line in ($lines | Select-Object -Skip ($separatorIndex + 1))) {
+        if ($line.Length -le $columnStarts[2]) { continue }
+        $versionEnd = if ($columnStarts.Count -gt 3) { [Math]::Min($columnStarts[3], $line.Length) } else { $line.Length }
+        $results += [PSCustomObject]@{
+            Name    = $line.Substring(0, $columnStarts[1]).Trim()
+            Id      = $line.Substring($columnStarts[1], $columnStarts[2] - $columnStarts[1]).Trim()
+            Version = $line.Substring($columnStarts[2], $versionEnd - $columnStarts[2]).Trim()
+            Source  = "winget"
+        }
+    }
+    return $results
+}
+
 # Define the Search-WingetApps function
 function Search-WingetApps {
     $searchForm = New-Object System.Windows.Forms.Form
@@ -2327,8 +2381,14 @@ function Search-WingetApps {
         $searchForm.Cursor = [System.Windows.Forms.Cursors]::WaitCursor
         
         try {
-            # Perform the search using Find-WinGetPackage
-            $searchResults = Find-WinGetPackage -Query $searchTerm
+            # Perform the search using Find-WinGetPackage, fall back to winget.exe if the WinGet COM server is unavailable
+            try {
+                $searchResults = Find-WinGetPackage -Query $searchTerm -ErrorAction Stop
+            }
+            catch {
+                Log-Message "Find-WinGetPackage failed: $($_.Exception.Message). Falling back to winget.exe search." "WARNING"
+                $searchResults = Find-WingetPackageCli -Query $searchTerm
+            }
 
             # Process results
             foreach ($result in $searchResults) {
@@ -2656,8 +2716,10 @@ $searchChocoButton.Add_Click({ Search-ChocoApps })
 
 # Modify the form load event to initialize modules
 $form.Add_Shown({
+    # Update winget before Microsoft.WinGet.Client is loaded: updating App Installer restarts
+    # the WinGet COM server, which breaks an already loaded module (error -2147023174)
+    Update-WingetSilently
     if (Initialize-RequiredModules) {
-        Update-WingetSilently
         Load-Apps  # This will just load any existing apps from config without connecting
     }
 })
