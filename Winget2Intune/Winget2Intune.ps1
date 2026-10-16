@@ -137,6 +137,12 @@
 # instead of continuing and failing with "Cannot convert the literal '' to the expected type 'Edm.Guid'"
 # Date: 16-10-2026
 #########################################
+# Version 2.1.5
+# Run stops before packaging when the Intune Graph connection fails (Connect-MSIntuneGraph only
+# writes a warning), and retries the connection because a new client secret can take a while to work
+# Fixed Connect-MgGraph with client secret (uses -ClientSecretCredential)
+# Date: 16-10-2026
+#########################################
 
 param (
     # Skip the GitHub auto-update check (e.g. when running a locally modified copy)
@@ -158,7 +164,7 @@ $repoUrl = "https://raw.githubusercontent.com/RoderickColeridge/Winget2Intune/re
 $versionFileUrl = "https://raw.githubusercontent.com/RoderickColeridge/Winget2Intune/refs/heads/main/Winget2Intune/version.txt"
 
 # Current version of the script
-$currentVersion = "2.1.4"
+$currentVersion = "2.1.5"
 
 # Get the directory of the current script
 $scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Definition
@@ -761,16 +767,12 @@ function Initialize-GraphConnection {
         if (-not $graphContext) {
             Log-Message "No active Graph connection. Connecting..."
             
-            # Connect to Microsoft Graph
-            Connect-MgGraph -TenantId $script:config.Credentials.TenantID -ClientId $script:config.Credentials.ClientID -ClientSecret $script:config.Credentials.ClientSecret -ErrorAction Stop
+            # Connect to Microsoft Graph (the Intune Graph connection is made in Run-MainScript)
+            $secureSecret = ConvertTo-SecureString -String $script:config.Credentials.ClientSecret -AsPlainText -Force
+            $clientCredential = New-Object System.Management.Automation.PSCredential($script:config.Credentials.ClientID, $secureSecret)
+            Connect-MgGraph -TenantId $script:config.Credentials.TenantID -ClientSecretCredential $clientCredential -ErrorAction Stop | Out-Null
             
-            # Connect to Intune Graph
-            Connect-MSIntuneGraph -TenantID $script:config.Credentials.TenantID `
-                                -ClientID $script:config.Credentials.ClientID `
-                                -ClientSecret $script:config.Credentials.ClientSecret `
-                                -ErrorAction Stop
-            
-            Log-Message "Successfully connected to Graph APIs"
+            Log-Message "Successfully connected to Microsoft Graph"
         } else {
             Log-Message "Using existing Graph connection"
         }
@@ -1532,16 +1534,33 @@ function Run-MainScript {
             throw "Failed to establish Graph connection"
         }
         
-        # Explicitly connect to Intune Graph with stored credentials
-        try {
+        # Explicitly connect to Intune Graph with stored credentials.
+        # Connect-MSIntuneGraph reports failures as warnings instead of errors, so check the token it sets.
+        # A newly created client secret can take a while before Entra ID accepts it, so retry before giving up.
+        $maxAttempts = 6
+        for ($attempt = 1; $attempt -le $maxAttempts; $attempt++) {
+            $Global:AccessToken = $null
+            $connectWarnings = $null
             Connect-MSIntuneGraph -TenantID $script:config.Credentials.TenantID `
                                 -ClientID $script:config.Credentials.ClientID `
                                 -ClientSecret $script:config.Credentials.ClientSecret `
-                                -ErrorAction Stop
-            Log-Message "Connected to Intune Graph API successfully"
-        }
-        catch {
-            throw "Failed to connect to Intune Graph API: $($_.Exception.Message)"
+                                -WarningVariable connectWarnings `
+                                -WarningAction SilentlyContinue `
+                                -ErrorAction SilentlyContinue | Out-Null
+            if ($Global:AccessToken -and -not [string]::IsNullOrEmpty($Global:AccessToken.AccessToken)) {
+                Log-Message "Connected to Intune Graph API successfully"
+                break
+            }
+            $connectError = ($connectWarnings | ForEach-Object { $_.Message }) -join ' '
+            Log-Message "Connecting to Intune Graph API failed (attempt $attempt of $maxAttempts): $connectError" "WARNING"
+            if ($attempt -eq $maxAttempts) {
+                $hint = ""
+                if ($connectError -match 'AADSTS7000215') {
+                    $hint = "`n`nThe client secret stored in config.json is not valid for app $($script:config.Credentials.ClientID). Click 'Del Credentials' and register the app again with 'App Reg'."
+                }
+                throw "Failed to connect to Intune Graph API: $connectError$hint"
+            }
+            Start-Sleep -Seconds 15
         }
 
         # Start transcript logging
