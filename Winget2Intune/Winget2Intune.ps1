@@ -132,6 +132,11 @@
 # instead of the old code continuing in the current session
 # Date: 16-10-2026
 #########################################
+# Version 2.1.4
+# App registration stops when the Microsoft Graph sign-in fails or is canceled,
+# instead of continuing and failing with "Cannot convert the literal '' to the expected type 'Edm.Guid'"
+# Date: 16-10-2026
+#########################################
 
 param (
     # Skip the GitHub auto-update check (e.g. when running a locally modified copy)
@@ -153,7 +158,7 @@ $repoUrl = "https://raw.githubusercontent.com/RoderickColeridge/Winget2Intune/re
 $versionFileUrl = "https://raw.githubusercontent.com/RoderickColeridge/Winget2Intune/refs/heads/main/Winget2Intune/version.txt"
 
 # Current version of the script
-$currentVersion = "2.1.3"
+$currentVersion = "2.1.4"
 
 # Get the directory of the current script
 $scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Definition
@@ -1177,6 +1182,9 @@ function Cleanup-TempFiles {
 }
 
 function Register-IntuneApp {
+    # Stop at the first failing Graph call, otherwise a failed or canceled sign-in
+    # continues with empty values and every following call fails as well
+    $ErrorActionPreference = 'Stop'
     try {
         Log-Message "Starting app registration process..."
         
@@ -1195,7 +1203,10 @@ function Register-IntuneApp {
             'DeviceManagementConfiguration.ReadWrite.All',
             'DeviceManagementManagedDevices.ReadWrite.All'
         )
-        Connect-MgGraph -Scopes $graphScopes | Out-Null
+        Connect-MgGraph -Scopes $graphScopes -ErrorAction Stop | Out-Null
+        if (-not (Get-MgContext)) {
+            throw "Not signed in to Microsoft Graph. The sign-in was canceled or did not complete."
+        }
 
         # Create Azure AD Application
         $appName = "Winget-Intune-App-Deployment"
@@ -1203,6 +1214,9 @@ function Register-IntuneApp {
 
         # Define Microsoft Graph permissions
         $msGraphSpn = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+        if (-not $msGraphSpn) {
+            throw "Microsoft Graph service principal not found in the tenant."
+        }
         
         $requiredResourceAccess = @(
             @{
@@ -1332,9 +1346,13 @@ function Register-IntuneApp {
 
     }
     catch {
+        $errorMessage = $_.Exception.Message
+        if ($errorMessage -match 'canceled|cancelled') {
+            $errorMessage = "The Microsoft sign-in was canceled or the sign-in window was closed. Click the button again and complete the sign-in.`n`nDetails: $errorMessage"
+        }
         Log-Message "Error during application registration: $($_.Exception.Message)" "ERROR"
         [System.Windows.Forms.MessageBox]::Show(
-            "Error during application registration: $($_.Exception.Message)",
+            "Error during application registration: $errorMessage",
             "Registration Error",
             [System.Windows.Forms.MessageBoxButtons]::OK,
             [System.Windows.Forms.MessageBoxIcon]::Error)
@@ -1356,7 +1374,7 @@ function Remove-AzureADApp {
 
         # Connect to Microsoft Graph with required scope
         Log-Message "Connecting to Microsoft Graph..."
-        Connect-MgGraph -Scopes "Application.ReadWrite.All" | Out-Null
+        Connect-MgGraph -Scopes "Application.ReadWrite.All" -ErrorAction Stop | Out-Null
         Log-Message "Successfully connected to Microsoft Graph"
 
         # Remove the application
