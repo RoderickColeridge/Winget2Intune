@@ -114,6 +114,18 @@
 # Renamed WingetId to PackageId in data model (auto-migrated on load)
 # Date: 01-04-2026
 #########################################
+# Version 2.1.1
+# Fixed upload failure with IntuneWin32App 1.0.7+ ("All" is no longer a valid -Architecture, now "x64x86")
+# Require a minimum IntuneWin32App version and update older installed versions automatically
+# Removed duplicate Cleanup-TempFiles definition
+# Auto-update only replaces the script when GitHub has a newer version; added -SkipUpdate switch
+# Date: 16-10-2026
+#########################################
+
+param (
+    # Skip the GitHub auto-update check (e.g. when running a locally modified copy)
+    [switch]$SkipUpdate
+)
 
 # Suppress provider prompts
 $env:POWERSHELL_UPDATECHECK = "Off"
@@ -130,7 +142,7 @@ $repoUrl = "https://raw.githubusercontent.com/RoderickColeridge/Winget2Intune/re
 $versionFileUrl = "https://raw.githubusercontent.com/RoderickColeridge/Winget2Intune/refs/heads/main/Winget2Intune/version.txt"
 
 # Current version of the script
-$currentVersion = "2.1.0"
+$currentVersion = "2.1.1"
 
 # Get the directory of the current script
 $scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Definition
@@ -138,23 +150,32 @@ $localScriptPath = Join-Path -Path $scriptRoot -ChildPath "Winget2Intune.ps1"
 
 # Function to check for updates
 function Check-ForUpdates {
-    # Get the remote version
-    $remoteVersion = (Invoke-WebRequest -Uri $versionFileUrl).Content.Trim()
+    try {
+        # Get the remote version
+        $remoteVersion = (Invoke-WebRequest -Uri $versionFileUrl -UseBasicParsing).Content.Trim()
 
-    if ($currentVersion -ne $remoteVersion) {
-        Write-Output "New version available. Updating script..."
-        # Download the new script
-        Invoke-WebRequest -Uri $repoUrl -OutFile $localScriptPath
-        # Update the current version variable
-        $script:currentVersion = $remoteVersion
-        Write-Output "Script updated to version $remoteVersion"
-    } else {
-        Write-Output "Script is up to date."
+        # Only update when GitHub has a newer version, so a local copy that is newer is never overwritten
+        if ([version]$remoteVersion -gt [version]$currentVersion) {
+            Write-Output "New version available. Updating script..."
+            # Download the new script
+            Invoke-WebRequest -Uri $repoUrl -OutFile $localScriptPath -UseBasicParsing
+            # Update the current version variable
+            $script:currentVersion = $remoteVersion
+            Write-Output "Script updated to version $remoteVersion"
+        } else {
+            Write-Output "Script is up to date."
+        }
+    } catch {
+        Write-Output "Update check failed: $($_.Exception.Message). Continuing with local version $currentVersion."
     }
 }
 
 # Call the update function
-Check-ForUpdates
+if ($SkipUpdate) {
+    Write-Output "Auto-update skipped (-SkipUpdate). Running local version $currentVersion."
+} else {
+    Check-ForUpdates
+}
 
 # Define the Log-Message function
 function Log-Message {
@@ -698,6 +719,12 @@ $script:requiredModules = @(
     'Microsoft.WinGet.Client'
 )
 
+# Minimum module versions required by this script
+# IntuneWin32App: -Architecture "x64x86" (replacement for the removed "All") requires a recent version
+$script:minimumModuleVersions = @{
+    'IntuneWin32App' = [version]'1.5.0'
+}
+
 function Initialize-GraphConnection {
     try {
         Log-Message "Initializing Graph connection..."
@@ -756,12 +783,19 @@ function Initialize-RequiredModules {
         foreach ($module in $script:requiredModules) {
             Log-Message "Processing module: $module"
             
-            # Check if module is already loaded with correct version
-            $loadedModule = Get-Module -Name $module -ErrorAction SilentlyContinue
+            $requiredVersion = $script:minimumModuleVersions[$module]
             
-            if ($loadedModule) {
+            # Check if module is already loaded with correct version
+            $loadedModule = Get-Module -Name $module -ErrorAction SilentlyContinue | Sort-Object Version -Descending | Select-Object -First 1
+            
+            if ($loadedModule -and (-not $requiredVersion -or $loadedModule.Version -ge $requiredVersion)) {
                 Log-Message "Module $module is already loaded (Version: $($loadedModule.Version))"
                 continue
+            }
+            
+            if ($loadedModule) {
+                Log-Message "Loaded module $module version $($loadedModule.Version) is older than required $requiredVersion, reloading" "WARNING"
+                Remove-Module -Name $module -Force -ErrorAction SilentlyContinue
             }
             
             # Check if module is installed
@@ -772,11 +806,20 @@ function Initialize-RequiredModules {
                 Install-Module -Name $module -Scope CurrentUser -Force -AllowClobber -ErrorAction Stop
                 Log-Message "Successfully installed $module"
             }
+            elseif ($requiredVersion -and $installedModule.Version -lt $requiredVersion) {
+                Log-Message "Module $module version $($installedModule.Version) is older than required $requiredVersion, updating..."
+                Install-Module -Name $module -MinimumVersion $requiredVersion -Scope CurrentUser -Force -AllowClobber -ErrorAction Stop
+                Log-Message "Successfully updated $module"
+            }
             
             # Import module
             try {
                 Log-Message "Importing module: $module"
-                Import-Module -Name $module -ErrorAction Stop
+                if ($requiredVersion) {
+                    Import-Module -Name $module -MinimumVersion $requiredVersion -ErrorAction Stop
+                } else {
+                    Import-Module -Name $module -ErrorAction Stop
+                }
                 Log-Message "Successfully imported $module"
             }
             catch {
@@ -2094,7 +2137,7 @@ catch {
 
                     # Get metadata and create rules
                     $intuneWinMetaData = Get-IntuneWin32AppMetaData -FilePath $intuneWinFile
-                    $requirementRule = New-IntuneWin32AppRequirementRule -Architecture "All" -MinimumSupportedWindowsRelease "W10_1607"
+                    $requirementRule = New-IntuneWin32AppRequirementRule -Architecture "x64x86" -MinimumSupportedWindowsRelease "W10_1607"
                     $detectionRule = New-IntuneWin32AppDetectionRuleScript -ScriptFile $detectionScriptPath -EnforceSignatureCheck $false -RunAs32Bit $false
 
                     # Check for icon
@@ -2228,23 +2271,6 @@ catch {
         catch {
             Log-Message "Error stopping transcript" "ERROR" $_
         }
-    }
-}
-
-# Define cleanup function
-function Cleanup-TempFiles {
-    param (
-        [string]$TempDir
-    )
-    try {
-        Get-ChildItem -Path $TempDir -File | ForEach-Object {
-            Remove-Item -Path $_.FullName -Force -ErrorAction Stop
-            Log-Message "Removed temporary file: $($_.FullName)"
-        }
-        Remove-Item -Path $TempDir -Force -Recurse -ErrorAction Stop
-        Log-Message "Removed temporary directory: $TempDir"
-    } catch {
-        Log-Message "Error during cleanup" "ERROR" $_
     }
 }
 
