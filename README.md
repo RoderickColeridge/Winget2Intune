@@ -129,7 +129,7 @@ The main overview shows:
     <li><strong>Edit</strong>: Modify existing application details, including switching the source type between Winget and Chocolatey.</li>
     <li><strong>Remove</strong>: Delete applications from the list.</li>
     <li><strong>Del Credentials</strong>: Remove stored Azure AD credentials.</li>
-    <li><strong>Auto-update</strong>: The script checks GitHub for a newer version on startup and updates itself automatically.</li>
+    <li><strong>Auto-update</strong>: The script checks GitHub for a newer version on startup and updates itself automatically. Start the script with <code>-SkipUpdate</code> to skip this check (for example when running a locally modified copy).</li>
     <li><strong>Logging</strong>: Detailed logs stored in the Logs directory.</li>
 </ul>
 
