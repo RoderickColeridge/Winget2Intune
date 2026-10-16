@@ -127,6 +127,11 @@
 # falls back to winget.exe when the WinGet COM server is unavailable
 # Date: 16-10-2026
 #########################################
+# Version 2.1.3
+# After an auto-update the script restarts itself, so the new version runs immediately
+# instead of the old code continuing in the current session
+# Date: 16-10-2026
+#########################################
 
 param (
     # Skip the GitHub auto-update check (e.g. when running a locally modified copy)
@@ -148,7 +153,7 @@ $repoUrl = "https://raw.githubusercontent.com/RoderickColeridge/Winget2Intune/re
 $versionFileUrl = "https://raw.githubusercontent.com/RoderickColeridge/Winget2Intune/refs/heads/main/Winget2Intune/version.txt"
 
 # Current version of the script
-$currentVersion = "2.1.2"
+$currentVersion = "2.1.3"
 
 # Get the directory of the current script
 $scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Definition
@@ -165,9 +170,11 @@ function Check-ForUpdates {
             Write-Output "New version available. Updating script..."
             # Download the new script
             Invoke-WebRequest -Uri $repoUrl -OutFile $localScriptPath -UseBasicParsing
-            # Update the current version variable
-            $script:currentVersion = $remoteVersion
-            Write-Output "Script updated to version $remoteVersion"
+            Write-Output "Script updated to version $remoteVersion. Restarting..."
+            # Restart so the new version runs, the code of this session is still the old version
+            $hostPath = (Get-Process -Id $PID).Path
+            Start-Process -FilePath $hostPath -ArgumentList @('-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', "`"$localScriptPath`"", '-SkipUpdate')
+            exit
         } else {
             Write-Output "Script is up to date."
         }
